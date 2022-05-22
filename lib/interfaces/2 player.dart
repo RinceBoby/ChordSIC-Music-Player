@@ -5,6 +5,7 @@ import 'package:chordsic/interfaces/1%20home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marquee/marquee.dart';
 //import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
@@ -108,11 +109,6 @@ class _PlayerState extends State<Player> {
                     ),
                   ),
                 ),
-                // Container(
-                //   height: 250,
-                //   width: 250,
-
-                // ),
               ),
 
 //===============Title_&_Artist===============//
@@ -120,38 +116,67 @@ class _PlayerState extends State<Player> {
               const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 20),
+              // child: SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
 
-                  // child: buildAnimatedText(
-                  //   player.getCurrentAudioTitle,
-                  // ),
-
-                  child: Text(
-                    player.getCurrentAudioTitle,
-                    style: GoogleFonts.nunito(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
+              Column(
+                children: [
+                  Container(
+                    height: 30,
+                    width: 300,
+                    child: Marquee(
+                      blankSpace: 20,
+                      velocity: 20,
+                      text: player.getCurrentAudioTitle,
+                      style: GoogleFonts.nunito(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Text(
-                    player.getCurrentAudioArtist,
-                    style: GoogleFonts.nunito(
+                  SizedBox(
+                    height: 30,
+                    width: 150,
+                    child: Marquee(
+                      blankSpace: 20,
+                      velocity: -20,
+                      text: player.getCurrentAudioArtist,
+                      style: GoogleFonts.nunito(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black),
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
+
+              // child: Text(
+              //   player.getCurrentAudioTitle,
+              // style: GoogleFonts.nunito(
+              //   fontSize: 25,
+              //   fontWeight: FontWeight.w600,
+              //   color: Colors.black,
+              // ),
+              // ),
+              //),
+              //),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 20),
+              //   child: SingleChildScrollView(
+              //     scrollDirection: Axis.horizontal,
+              //     child: Text(
+              //       player.getCurrentAudioArtist,
+              //       style: GoogleFonts.nunito(
+              //           fontSize: 20,
+              //           fontWeight: FontWeight.w600,
+              //           color: Colors.black),
+              //     ),
+              //   ),
+              // ),
               const SizedBox(
                 height: 0,
               ),
@@ -174,21 +199,27 @@ class _PlayerState extends State<Player> {
                     iconSize: 25,
                     color: Colors.purpleAccent,
                   ),
+
+                  //Previous
                   IconButton(
-                    onPressed: () {
-                      player.previous();
-                    },
-                    icon: const Icon(CupertinoIcons.backward_end),
+                    onPressed: playing.index == 0
+                        ? () {}
+                        : () {
+                            player.previous();
+                          },
+                    icon: playing.index == 0
+                        ? const SizedBox()
+                        : const Icon(CupertinoIcons.backward_end),
                     iconSize: 40,
                     color: Colors.purpleAccent,
                   ),
+
+                  //Play_Pause
                   Container(
                     height: 100,
                     width: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      //border: Border.all(width: 5, color: Colors.purpleAccent),
-                      //color: Colors.purpleAccent,
                     ),
                     child: PlayerBuilder.isPlaying(
                       player: player,
@@ -208,6 +239,8 @@ class _PlayerState extends State<Player> {
                       },
                     ),
                   ),
+
+                  //Next
                   IconButton(
                     onPressed: () {
                       player.next();
@@ -230,12 +263,4 @@ class _PlayerState extends State<Player> {
       ),
     );
   }
-
-  // Widget buildAnimatedText(String text) => Marquee(
-  //       text: text,
-  //       style: GoogleFonts.nunito(
-  //           fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black),
-  //       blankSpace: 90,
-  //       velocity: 150,
-  //     );
 }

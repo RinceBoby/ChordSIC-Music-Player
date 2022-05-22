@@ -4,6 +4,7 @@ import 'package:chordsic/interfaces/6%20search.dart';
 import 'package:chordsic/interfaces/mini_player.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -162,10 +163,13 @@ class _HomeState extends State<Home> {
                       );
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) =>const Player(),
+                          builder: (context) => const Player(),
                         ),
                       );
                     },
+                    
+                    //Thumb_Titile_Artist
+
                     leading: QueryArtworkWidget(
                       id: item.data![index].id,
                       type: ArtworkType.AUDIO,
@@ -179,21 +183,38 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    title: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Text(
-                        item.data![index].title.toString(),
+                    title: SizedBox(
+                      height: 30,
+                      child: Marquee(
+                        blankSpace: 20,
+                        velocity: 20,
+                        text: item.data![index].title.toString(),
                         style: GoogleFonts.nunito(
-                          fontSize: 20,
+                          fontSize: 25,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         ),
                       ),
                     ),
-                    subtitle: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Text(
-                        "${item.data![index].artist}",
+                    // SingleChildScrollView(
+                    //   scrollDirection: Axis.horizontal,
+                    //   child: Text(
+                    //     item.data![index].title.toString(),
+                    //     style: GoogleFonts.nunito(
+                    //       fontSize: 20,
+                    //       fontWeight: FontWeight.w600,
+                    //       color: Colors.black,
+                    //     ),
+                    //   ),
+                    // ),
+                    subtitle: SizedBox(
+                      height: 20,
+                      child: Marquee(
+                        blankSpace: 20,
+                        velocity: -20,
+                        pauseAfterRound: const Duration(seconds: 2),
+                        startPadding: 10,
+                        text: "${item.data![index].artist}",
                         style: GoogleFonts.nunito(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -201,6 +222,17 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
+                    // SingleChildScrollView(
+                    //   scrollDirection: Axis.horizontal,
+                    //   child: Text(
+                    //     "${item.data![index].artist}",
+                    //     style: GoogleFonts.nunito(
+                    //       fontSize: 15,
+                    //       fontWeight: FontWeight.w600,
+                    //       color: Colors.black,
+                    //     ),
+                    //   ),
+                    // ),
                     trailing: IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.more_vert),

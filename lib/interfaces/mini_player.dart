@@ -4,6 +4,7 @@ import 'package:chordsic/interfaces/2%20player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class MiniPlayer extends StatefulWidget {
@@ -95,27 +96,54 @@ class _MiniPlayerState extends State<MiniPlayer> {
                     ),
                     //Song_Name
 
-                    title: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Text(player.getCurrentAudioTitle,
-                          style: GoogleFonts.nunito(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black)),
+                    title: SizedBox(
+                      height: 22,
+                      child: Marquee(
+                        blankSpace: 20,
+                        velocity: 20,
+                        text: player.getCurrentAudioTitle,
+                        style: GoogleFonts.nunito(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
+
+                    // SingleChildScrollView(
+                    //   scrollDirection: Axis.horizontal,
+                    //   child: Text(player.getCurrentAudioTitle,
+                    //       style: GoogleFonts.nunito(
+                    //           fontSize: 20,
+                    //           fontWeight: FontWeight.w600,
+                    //           color: Colors.black)),
+                    // ),
 
                     //Artist_Name
 
-                    subtitle: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Text(
-                        player.getCurrentAudioArtist,
+                    subtitle: SizedBox(
+                      height: 15,
+                      child: Marquee(
+                        blankSpace: 20,
+                        velocity: -20,
+                        text: player.getCurrentAudioArtist,
                         style: GoogleFonts.nunito(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
+                    // SingleChildScrollView(
+                    //   scrollDirection: Axis.horizontal,
+                    //   child: Text(
+                    //     player.getCurrentAudioArtist,
+                    //     style: GoogleFonts.nunito(
+                    //         fontSize: 15,
+                    //         fontWeight: FontWeight.w600,
+                    //         color: Colors.black),
+                    //   ),
+                    // ),
                     trailing: PlayerBuilder.isPlaying(
                       player: player,
                       builder: (context, isPlaying) {
