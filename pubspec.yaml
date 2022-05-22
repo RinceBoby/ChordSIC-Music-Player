@@ -37,7 +37,6 @@ dependencies:
   google_fonts: ^2.3.2
   hive: ^2.2.1
   hive_flutter: ^1.1.0
-  marquee: 2.2.1
   on_audio_query: ^2.6.1
   permission_handler: ^9.2.0
   syncfusion_flutter_sliders: ^20.1.52

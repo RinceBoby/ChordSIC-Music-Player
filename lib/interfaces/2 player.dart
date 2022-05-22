@@ -5,7 +5,7 @@ import 'package:chordsic/interfaces/1%20home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:marquee/marquee.dart';
+//import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class Player extends StatefulWidget {
@@ -124,9 +124,9 @@ class _PlayerState extends State<Player> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 //child: SingleChildScrollView(
                 //scrollDirection: Axis.horizontal,
-                child: buildAnimatedText(
-                  player.getCurrentAudioTitle,
-                ),
+                // child: buildAnimatedText(
+                //   player.getCurrentAudioTitle,
+                // ),
                 // Text(
                 //   player.getCurrentAudioTitle,
                 //   style: GoogleFonts.nunito(
@@ -225,11 +225,11 @@ class _PlayerState extends State<Player> {
     );
   }
 
-  Widget buildAnimatedText(String text) => Marquee(
-        text: text,
-        style: GoogleFonts.nunito(
-            fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black),
-        blankSpace: 90,
-        velocity: 150,
-      );
+  // Widget buildAnimatedText(String text) => Marquee(
+  //       text: text,
+  //       style: GoogleFonts.nunito(
+  //           fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black),
+  //       blankSpace: 90,
+  //       velocity: 150,
+  //     );
 }
