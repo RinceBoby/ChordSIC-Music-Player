@@ -3,6 +3,7 @@ import 'package:chordsic/interfaces/2%20player.dart';
 import 'package:chordsic/interfaces/openPlayer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class CustomSearch extends SearchDelegate {
@@ -29,12 +30,6 @@ class CustomSearch extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return theme.copyWith(
-      //primaryTextTheme: theme.primaryTextTheme,
-      //primaryColor: theme.primaryColor,
-      //primaryColorBrightness: theme.primaryColorBrightness,
-      // textTheme: const TextTheme(
-      //   displayMedium: TextStyle(color: Colors.black),
-      // ),
       hintColor: Colors.grey,
       appBarTheme: const AppBarTheme(
         color: Color.fromARGB(255, 221, 255, 252),
@@ -162,21 +157,38 @@ class CustomSearch extends SearchDelegate {
                           id: int.parse(searchSongItem[index].metas.id!),
                           type: ArtworkType.AUDIO,
                         ),
-                        title: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Text(
-                            searchSongItem[index].metas.title!,
+                        title: SizedBox(
+                          height: 30,
+                          child: Marquee(
+                            blankSpace: 20,
+                            velocity: 20,
+                            text: searchSongItem[index].metas.title!,
                             style: GoogleFonts.nunito(
-                              fontSize: 20,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w600,
                               color: Colors.black,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                        subtitle: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Text(
-                            searchSongItem[index].metas.artist!,
+                        // SingleChildScrollView(
+                        //   scrollDirection: Axis.horizontal,
+                        //   child: Text(
+                        //     searchSongItem[index].metas.title!,
+                        //     style: GoogleFonts.nunito(
+                        //       fontSize: 20,
+                        //       color: Colors.black,
+                        //       fontWeight: FontWeight.bold,
+                        //     ),
+                        //   ),
+                        // ),
+                        subtitle: SizedBox(
+                          height: 20,
+                          child: Marquee(
+                            blankSpace: 20,
+                            velocity: -20,
+                            pauseAfterRound: const Duration(seconds: 2),
+                            startPadding: 10,
+                            text: searchSongItem[index].metas.artist!,
                             style: GoogleFonts.nunito(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
@@ -184,6 +196,17 @@ class CustomSearch extends SearchDelegate {
                             ),
                           ),
                         ),
+                        // SingleChildScrollView(
+                        //   scrollDirection: Axis.horizontal,
+                        //   child: Text(
+                        //     searchSongItem[index].metas.artist!,
+                        //     style: GoogleFonts.nunito(
+                        //       fontSize: 15,
+                        //       fontWeight: FontWeight.w600,
+                        //       color: Colors.black,
+                        //     ),
+                        //   ),
+                        // ),
                         trailing: IconButton(
                           onPressed: () {},
                           icon: const Icon(

@@ -58,7 +58,7 @@ class _PlayerState extends State<Player> {
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
               onPressed: () {},
-              icon:const Icon(FontAwesomeIcons.heart),
+              icon: const Icon(FontAwesomeIcons.heart),
               color: Colors.grey,
               iconSize: 30,
             ),
@@ -201,17 +201,22 @@ class _PlayerState extends State<Player> {
 
                   //Previous
                   IconButton(
-                    onPressed: playing.index == 0
+                    onPressed: playing.index != 0
                         ? () {}
                         : () {
                             player.previous();
                           },
                     icon: playing.index == 0
-                        ? const SizedBox()
-                        : //Icon(fontawesomw)
-                        const Icon(FontAwesomeIcons.backward),
-                    iconSize: 40,
-                    color: Colors.purpleAccent,
+                        ? Icon(
+                            FontAwesomeIcons.backward,
+                            size: 40,
+                            color: Colors.purple[100],
+                          )
+                        : const Icon(
+                            FontAwesomeIcons.backward,
+                            size: 40,
+                            color: Colors.purpleAccent,
+                          ),
                   ),
 
                   //Play_Pause
@@ -247,9 +252,17 @@ class _PlayerState extends State<Player> {
                         : () {
                             player.next();
                           },
-                    icon: playing.index == allSongs.length
-                        ? const SizedBox()
-                        : const Icon(FontAwesomeIcons.forward),
+                    icon: playing.index == allSongs.length - 1
+                        ? Icon(
+                            FontAwesomeIcons.forward,
+                            size: 40,
+                            color: Colors.purple[100],
+                          )
+                        : const Icon(
+                            FontAwesomeIcons.forward,
+                            size: 40,
+                            color: Colors.purpleAccent,
+                          ),
                     iconSize: 40,
                     color: Colors.purpleAccent,
                   ),
