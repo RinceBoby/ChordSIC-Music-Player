@@ -122,20 +122,22 @@ class _PlayerState extends State<Player> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                //child: SingleChildScrollView(
-                //scrollDirection: Axis.horizontal,
-                // child: buildAnimatedText(
-                //   player.getCurrentAudioTitle,
-                // ),
-                // Text(
-                //   player.getCurrentAudioTitle,
-                //   style: GoogleFonts.nunito(
-                //     fontSize: 25,
-                //     fontWeight: FontWeight.w600,
-                //     color: Colors.black,
-                //   ),
-                // ),
-                //),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+
+                  // child: buildAnimatedText(
+                  //   player.getCurrentAudioTitle,
+                  // ),
+
+                  child: Text(
+                    player.getCurrentAudioTitle,
+                    style: GoogleFonts.nunito(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -173,7 +175,9 @@ class _PlayerState extends State<Player> {
                     color: Colors.purpleAccent,
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      player.previous();
+                    },
                     icon: const Icon(CupertinoIcons.backward_end),
                     iconSize: 40,
                     color: Colors.purpleAccent,
@@ -205,7 +209,9 @@ class _PlayerState extends State<Player> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      player.next();
+                    },
                     icon: const Icon(CupertinoIcons.forward_end),
                     iconSize: 40,
                     color: Colors.purpleAccent,
