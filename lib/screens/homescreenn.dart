@@ -6,6 +6,7 @@ import 'package:chordsic/interfaces/5%20settings.dart';
 import 'package:chordsic/interfaces/mini_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen1 extends StatefulWidget {
   const HomeScreen1({Key? key}) : super(key: key);
@@ -33,11 +34,11 @@ class _HomeScreen1State extends State<HomeScreen1> {
       backgroundColor: const Color.fromARGB(255, 221, 255, 252),
       bottomNavigationBar: Row(
         children: [
-          BuildNavBarItem(CupertinoIcons.home, 0),
+          BuildNavBarItem(FontAwesomeIcons.houseUser, 0),
           //BuildNavBarItem(CupertinoIcons.headphones, 1),
-          BuildNavBarItem(CupertinoIcons.heart, 1),
-          BuildNavBarItem(Icons.playlist_play_outlined, 2),
-          BuildNavBarItem(Icons.settings_outlined, 3),
+          BuildNavBarItem(FontAwesomeIcons.heart, 1),
+          BuildNavBarItem(FontAwesomeIcons.listCheck, 2),
+          BuildNavBarItem(FontAwesomeIcons.gear, 3),
         ],
       ),
     );

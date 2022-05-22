@@ -4,10 +4,11 @@ import 'package:chordsic/functions/fact_player.dart';
 import 'package:chordsic/interfaces/1%20home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marquee/marquee.dart';
-//import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Player extends StatefulWidget {
   const Player({Key? key}) : super(key: key);
@@ -36,10 +37,10 @@ class _PlayerState extends State<Player> {
           child: IconButton(
             onPressed: () {},
             icon: const Icon(
-              CupertinoIcons.add_circled,
+              FontAwesomeIcons.creativeCommonsSamplingPlus,
               color: Colors.grey,
-              size: 35,
             ),
+            iconSize: 30,
           ),
         ),
         title: Text(
@@ -57,11 +58,9 @@ class _PlayerState extends State<Player> {
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
               onPressed: () {},
-              icon: const Icon(
-                CupertinoIcons.heart,
-                color: Colors.grey,
-                size: 30,
-              ),
+              icon:const Icon(FontAwesomeIcons.heart),
+              color: Colors.grey,
+              iconSize: 30,
             ),
           ),
         ],
@@ -195,7 +194,7 @@ class _PlayerState extends State<Player> {
                 children: [
                   IconButton(
                     onPressed: () {},
-                    icon: const Icon(Icons.shuffle_rounded),
+                    icon: const Icon(FontAwesomeIcons.shuffle),
                     iconSize: 25,
                     color: Colors.purpleAccent,
                   ),
@@ -209,7 +208,8 @@ class _PlayerState extends State<Player> {
                           },
                     icon: playing.index == 0
                         ? const SizedBox()
-                        : const Icon(CupertinoIcons.backward_end),
+                        : //Icon(fontawesomw)
+                        const Icon(FontAwesomeIcons.backward),
                     iconSize: 40,
                     color: Colors.purpleAccent,
                   ),
@@ -227,9 +227,9 @@ class _PlayerState extends State<Player> {
                         return IconButton(
                           icon: Icon(
                             isPlaying
-                                ? Icons.pause_circle_outline_rounded
-                                : Icons.play_circle_outline_rounded,
-                            size: 90,
+                                ? FontAwesomeIcons.solidCirclePause
+                                : FontAwesomeIcons.solidCirclePlay,
+                            size: 80,
                           ),
                           onPressed: () {
                             player.playOrPause();
@@ -242,16 +242,20 @@ class _PlayerState extends State<Player> {
 
                   //Next
                   IconButton(
-                    onPressed: () {
-                      player.next();
-                    },
-                    icon: const Icon(CupertinoIcons.forward_end),
+                    onPressed: playing.index == allSongs.length - 1
+                        ? () {}
+                        : () {
+                            player.next();
+                          },
+                    icon: playing.index == allSongs.length
+                        ? const SizedBox()
+                        : const Icon(FontAwesomeIcons.forward),
                     iconSize: 40,
                     color: Colors.purpleAccent,
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: const Icon(Icons.loop_rounded),
+                    icon: const Icon(FontAwesomeIcons.rotate),
                     iconSize: 25,
                     color: Colors.purpleAccent,
                   ),
