@@ -2,13 +2,11 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:chordsic/functions/fact_player.dart';
 import 'package:chordsic/interfaces/1%20home.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Player extends StatefulWidget {
   const Player({Key? key}) : super(key: key);

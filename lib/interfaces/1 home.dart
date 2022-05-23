@@ -156,6 +156,9 @@ class _HomeState extends State<Home> {
                           startIndex: index,
                         ),
                         showNotification: true,
+                        notificationSettings: const NotificationSettings(
+                          stopEnabled: false,
+                        ),
                         autoStart: true,
                         loopMode: LoopMode.playlist,
                         playInBackground: PlayInBackground.enabled,
