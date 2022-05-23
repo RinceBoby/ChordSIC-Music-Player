@@ -1,14 +1,22 @@
 import 'package:chordsic/dbFunctions/songs_model.dart';
 import 'package:chordsic/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter/services.dart';
 
-void main(List<String> args)  async{
+void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
   Hive.registerAdapter(SongsModelAdapter());
+
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ],
+  );
 
   runApp(const MyApp());
 }
