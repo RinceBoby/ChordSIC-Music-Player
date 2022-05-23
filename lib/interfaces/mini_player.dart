@@ -126,7 +126,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
                       height: 15,
                       child: Marquee(
                         blankSpace: 20,
-                        velocity: -20,
+                        velocity: 20,
                         text: player.getCurrentAudioArtist,
                         style: GoogleFonts.nunito(
                           fontSize: 15,

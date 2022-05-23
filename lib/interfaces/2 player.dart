@@ -120,7 +120,7 @@ class _PlayerState extends State<Player> {
 
               Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 30,
                     width: 300,
                     child: Marquee(
@@ -139,7 +139,7 @@ class _PlayerState extends State<Player> {
                     width: 150,
                     child: Marquee(
                       blankSpace: 20,
-                      velocity: -20,
+                      velocity: 20,
                       text: player.getCurrentAudioArtist,
                       style: GoogleFonts.nunito(
                         fontSize: 20,

@@ -157,38 +157,51 @@ class CustomSearch extends SearchDelegate {
                           id: int.parse(searchSongItem[index].metas.id!),
                           type: ArtworkType.AUDIO,
                         ),
-                        title: SizedBox(
-                          height: 30,
-                          child: Marquee(
-                            blankSpace: 20,
-                            velocity: 20,
-                            text: searchSongItem[index].metas.title!,
+                        title:
+                            // SizedBox(
+                            //   height: 30,
+                            //   child: Marquee(
+                            //     blankSpace: 20,
+                            //     velocity: 20,
+                            //     text: searchSongItem[index].metas.title!,
+                            //     style: GoogleFonts.nunito(
+                            //       fontSize: 25,
+                            //       fontWeight: FontWeight.w600,
+                            //       color: Colors.black,
+                            //     ),
+                            //   ),
+                            // ),
+                            SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Text(
+                            searchSongItem[index].metas.title!,
                             style: GoogleFonts.nunito(
-                              fontSize: 25,
-                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
                               color: Colors.black,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                        // SingleChildScrollView(
-                        //   scrollDirection: Axis.horizontal,
-                        //   child: Text(
-                        //     searchSongItem[index].metas.title!,
-                        //     style: GoogleFonts.nunito(
-                        //       fontSize: 20,
-                        //       color: Colors.black,
-                        //       fontWeight: FontWeight.bold,
-                        //     ),
-                        //   ),
-                        // ),
-                        subtitle: SizedBox(
-                          height: 20,
-                          child: Marquee(
-                            blankSpace: 20,
-                            velocity: -20,
-                            pauseAfterRound: const Duration(seconds: 2),
-                            startPadding: 10,
-                            text: searchSongItem[index].metas.artist!,
+                        subtitle:
+                            // SizedBox(
+                            //   height: 20,
+                            //   child: Marquee(
+                            //     blankSpace: 20,
+                            //     velocity: -20,
+                            //     pauseAfterRound: const Duration(seconds: 2),
+                            //     startPadding: 10,
+                            //     text: searchSongItem[index].metas.artist!,
+                            //     style: GoogleFonts.nunito(
+                            //       fontSize: 15,
+                            //       fontWeight: FontWeight.w600,
+                            //       color: Colors.black,
+                            //     ),
+                            //   ),
+                            // ),
+                            SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Text(
+                            searchSongItem[index].metas.artist!,
                             style: GoogleFonts.nunito(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
@@ -196,17 +209,6 @@ class CustomSearch extends SearchDelegate {
                             ),
                           ),
                         ),
-                        // SingleChildScrollView(
-                        //   scrollDirection: Axis.horizontal,
-                        //   child: Text(
-                        //     searchSongItem[index].metas.artist!,
-                        //     style: GoogleFonts.nunito(
-                        //       fontSize: 15,
-                        //       fontWeight: FontWeight.w600,
-                        //       color: Colors.black,
-                        //     ),
-                        //   ),
-                        // ),
                         trailing: IconButton(
                           onPressed: () {},
                           icon: const Icon(
