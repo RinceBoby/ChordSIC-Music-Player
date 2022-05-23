@@ -3,6 +3,7 @@ import 'package:chordsic/interfaces/1%20home.dart';
 import 'package:chordsic/interfaces/2%20player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -148,17 +149,17 @@ class _MiniPlayerState extends State<MiniPlayer> {
                       player: player,
                       builder: (context, isPlaying) {
                         //PlayOrPause
-
                         return IconButton(
-                          icon: Icon(
-                            isPlaying ? Icons.pause_circle : Icons.play_circle,
-                            size: 50,
-                          ),
                           onPressed: () {
                             player.playOrPause();
                           },
-                          color: Colors.purpleAccent,
+                          icon: Icon(isPlaying
+                              ? FontAwesomeIcons.circlePause
+                              : FontAwesomeIcons.circlePlay),
+                              iconSize: 40,
+                              color: Colors.purpleAccent,
                         );
+                        
                       },
                     ),
                   ),

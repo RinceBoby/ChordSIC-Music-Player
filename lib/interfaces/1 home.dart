@@ -162,11 +162,11 @@ class _HomeState extends State<Home> {
                         loopMode: LoopMode.playlist,
                         playInBackground: PlayInBackground.enabled,
                       );
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const Player(),
-                        ),
-                      );
+                      // Navigator.of(context).push(
+                      //   MaterialPageRoute(
+                      //     builder: (context) => const MiniPlayer(),
+                      //   ),
+                      // );
                     },
 
                     //Thumb_Titile_Artist
