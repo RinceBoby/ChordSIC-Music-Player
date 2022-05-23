@@ -184,38 +184,21 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    title: SizedBox(
-                      height: 30,
-                      child: Marquee(
-                        blankSpace: 20,
-                        velocity: 20,
-                        text: item.data![index].title.toString(),
+                    title: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Text(
+                        item.data![index].title.toString(),
                         style: GoogleFonts.nunito(
-                          fontSize: 25,
+                          fontSize: 20,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         ),
                       ),
                     ),
-                    // SingleChildScrollView(
-                    //   scrollDirection: Axis.horizontal,
-                    //   child: Text(
-                    //     item.data![index].title.toString(),
-                    //     style: GoogleFonts.nunito(
-                    //       fontSize: 20,
-                    //       fontWeight: FontWeight.w600,
-                    //       color: Colors.black,
-                    //     ),
-                    //   ),
-                    // ),
-                    subtitle: SizedBox(
-                      height: 20,
-                      child: Marquee(
-                        blankSpace: 20,
-                        velocity: -20,
-                        pauseAfterRound: const Duration(seconds: 2),
-                        startPadding: 10,
-                        text: "${item.data![index].artist}",
+                    subtitle: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Text(
+                        "${item.data![index].artist}",
                         style: GoogleFonts.nunito(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -223,17 +206,6 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    // SingleChildScrollView(
-                    //   scrollDirection: Axis.horizontal,
-                    //   child: Text(
-                    //     "${item.data![index].artist}",
-                    //     style: GoogleFonts.nunito(
-                    //       fontSize: 15,
-                    //       fontWeight: FontWeight.w600,
-                    //       color: Colors.black,
-                    //     ),
-                    //   ),
-                    // ),
                     trailing: IconButton(
                       onPressed: () {},
                       icon: const Icon(
