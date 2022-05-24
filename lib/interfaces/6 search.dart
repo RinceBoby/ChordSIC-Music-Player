@@ -3,7 +3,6 @@ import 'package:chordsic/interfaces/2%20player.dart';
 import 'package:chordsic/interfaces/openPlayer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class CustomSearch extends SearchDelegate {
