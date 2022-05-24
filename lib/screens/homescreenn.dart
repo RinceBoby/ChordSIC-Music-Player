@@ -1,10 +1,7 @@
 import 'package:chordsic/interfaces/1%20home.dart';
-import 'package:chordsic/interfaces/2%20player.dart';
 import 'package:chordsic/interfaces/3%20favorite.dart';
 import 'package:chordsic/interfaces/4%20playlist.dart';
 import 'package:chordsic/interfaces/5%20settings.dart';
-import 'package:chordsic/interfaces/mini_player.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -62,6 +59,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
         width: MediaQuery.of(context).size.width / 4,
         decoration: index == _currentSelectedItemIndex
             ? BoxDecoration(
+              //borderRadius: BorderRadius.all(Radius.circular(10)),
                 border: const Border(
                   bottom: BorderSide(
                     width: 4,

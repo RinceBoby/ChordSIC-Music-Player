@@ -35,11 +35,14 @@ dependencies:
     sdk: flutter
   flutter_search_bar: ^2.1.0
   font_awesome_flutter: ^10.1.0
+  # gallery_saver: ^2.3.2
   google_fonts: ^2.3.2
   hive: ^2.2.1
   hive_flutter: ^1.1.0
+  image_picker: ^0.8.5+3
   marquee: 2.2.0
   on_audio_query: ^2.6.1
+  path_provider: ^2.0.10
   permission_handler: ^9.2.0
   syncfusion_flutter_sliders: ^20.1.52
 

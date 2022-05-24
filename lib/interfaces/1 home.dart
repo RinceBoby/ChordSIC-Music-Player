@@ -3,7 +3,6 @@ import 'package:chordsic/interfaces/6%20search.dart';
 import 'package:chordsic/interfaces/mini_player.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -116,8 +115,15 @@ class _HomeState extends State<Home> {
             );
           }
           if (item.data!.isEmpty) {
-            return const Center(
-              child: Text('No songs found'),
+            return Center(
+              child: Text(
+                'No songs found',
+                style: GoogleFonts.nunito(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey,
+                ),
+              ),
             );
           }
 
@@ -170,11 +176,13 @@ class _HomeState extends State<Home> {
                       // );
                     },
 
-                    //Thumb_Titile_Artist
+              //====================Thumb_Titile_Artist====================//
 
                     leading: QueryArtworkWidget(
                       id: item.data![index].id,
                       type: ArtworkType.AUDIO,
+
+                  //============No_Thumbnail=============//
                       nullArtworkWidget: ClipRRect(
                         borderRadius: const BorderRadius.all(
                           Radius.circular(50),
