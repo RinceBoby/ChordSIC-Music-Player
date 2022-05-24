@@ -145,22 +145,70 @@ class _MiniPlayerState extends State<MiniPlayer> {
                     //         color: Colors.black),
                     //   ),
                     // ),
-                    trailing: PlayerBuilder.isPlaying(
-                      player: player,
-                      builder: (context, isPlaying) {
-                        //PlayOrPause
-                        return IconButton(
-                          onPressed: () {
-                            player.playOrPause();
-                          },
-                          icon: Icon(isPlaying
-                              ? FontAwesomeIcons.circlePause
-                              : FontAwesomeIcons.circlePlay),
+                    trailing: Wrap(
+                      alignment: WrapAlignment.center,
+                      children: [
+                        //Previous
+                        IconButton(
+                          onPressed: playing.index != 0
+                              ? () {
+                                  player.previous();
+                                }
+                              : () {},
+                          icon: playing.index == 0
+                              ? Icon(
+                                  FontAwesomeIcons.backward,
+                                  size: 40,
+                                  color: Colors.purple[100],
+                                )
+                              : const Icon(
+                                  FontAwesomeIcons.backward,
+                                  size: 40,
+                                  color: Colors.purpleAccent,
+                                ),
+                        ),
+                        const SizedBox(width: 8),
+
+                        //Play
+                        PlayerBuilder.isPlaying(
+                          player: player,
+                          builder: (context, isPlaying) {
+                            //PlayOrPause
+                            return IconButton(
+                              onPressed: () {
+                                player.playOrPause();
+                              },
+                              icon: Icon(isPlaying
+                                  ? FontAwesomeIcons.circlePause
+                                  : FontAwesomeIcons.circlePlay),
                               iconSize: 40,
                               color: Colors.purpleAccent,
-                        );
-                        
-                      },
+                            );
+                          },
+                        ),
+
+                        //Next
+                        IconButton(
+                          onPressed: playing.index == allSongs.length - 1
+                              ? () {}
+                              : () {
+                                  player.next();
+                                },
+                          icon: playing.index == allSongs.length - 1
+                              ? Icon(
+                                  FontAwesomeIcons.forward,
+                                  size: 40,
+                                  color: Colors.purple[100],
+                                )
+                              : const Icon(
+                                  FontAwesomeIcons.forward,
+                                  size: 40,
+                                  color: Colors.purpleAccent,
+                                ),
+                          iconSize: 40,
+                          color: Colors.purpleAccent,
+                        ),
+                      ],
                     ),
                   ),
                 ),

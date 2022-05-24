@@ -200,10 +200,10 @@ class _PlayerState extends State<Player> {
                   //Previous
                   IconButton(
                     onPressed: playing.index != 0
-                        ? () {}
-                        : () {
+                        ? () {
                             player.previous();
-                          },
+                          }
+                        : () {},
                     icon: playing.index == 0
                         ? Icon(
                             FontAwesomeIcons.backward,
@@ -216,6 +216,7 @@ class _PlayerState extends State<Player> {
                             color: Colors.purpleAccent,
                           ),
                   ),
+                  const SizedBox(width: 8),
 
                   //Play_Pause
                   Container(

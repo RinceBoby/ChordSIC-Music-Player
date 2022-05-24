@@ -97,18 +97,6 @@ class PlayList extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.more_vert_outlined,
-                        color: Colors.black,
-                        size: 30,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),

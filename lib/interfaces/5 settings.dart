@@ -16,7 +16,7 @@ class Settings extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 221, 255, 252),
         title: Text(
           'Settings',
-           style: GoogleFonts.nunito(
+          style: GoogleFonts.nunito(
             fontSize: 30,
             letterSpacing: 1,
             color: Colors.grey,
@@ -32,10 +32,6 @@ class Settings extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, top: 10),
         child: ListView(
           children: [
-            const SettingsData(
-              setbullets: Icons.workspace_premium_outlined,
-              settext: ' Go Premium',
-            ),
             const SettingsData(
               setbullets: Icons.share_outlined,
               settext: ' Share',
