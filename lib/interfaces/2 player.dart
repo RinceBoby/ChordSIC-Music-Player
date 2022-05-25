@@ -2,6 +2,7 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:chordsic/functions/fact_player.dart';
 import 'package:chordsic/interfaces/1%20home.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,8 +35,8 @@ class _PlayerState extends State<Player> {
           padding: const EdgeInsets.only(left: 10),
           child: IconButton(
             onPressed: () {},
-            icon: const Icon(
-              FontAwesomeIcons.creativeCommonsSamplingPlus,
+            icon:const Icon(
+              CupertinoIcons.plus_app,
               color: Colors.grey,
             ),
             iconSize: 30,

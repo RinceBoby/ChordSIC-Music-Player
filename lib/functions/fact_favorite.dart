@@ -23,6 +23,7 @@ class Favorites extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Container(
             height: 100,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(
                 Radius.circular(10),
