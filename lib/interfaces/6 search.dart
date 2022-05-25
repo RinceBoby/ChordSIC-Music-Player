@@ -130,12 +130,13 @@ class CustomSearch extends SearchDelegate {
                     child: Center(
                       child: ListTile(
                         onTap: (() async {
-                          await OpenPlayer(
+                          await 
+                          OpenPlayer(
                             fullSongs: [],
                             index: index,
                           ).openAssetPlayer(
                             index: index,
-                            songs: songDetails,
+                            songs: searchSongItem,
                           );
                           Navigator.of(context).push(
                             MaterialPageRoute(
