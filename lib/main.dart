@@ -5,12 +5,18 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/services.dart';
 
 void main(List<String> args) async {
-  WidgetsFlutterBinding.ensureInitialized();
+  //
+  //==========Setup_Hive==========//
 
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+
+  //==========Register Adapter==========//
+
   Hive.registerAdapter(SongsModelAdapter());
 
-  WidgetsFlutterBinding.ensureInitialized();
+  //==========Orientation Setup==========//
+
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp,
