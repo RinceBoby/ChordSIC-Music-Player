@@ -1,7 +1,6 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:chordsic/interfaces/1%20home.dart';
 import 'package:chordsic/interfaces/2%20player.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:chordsic/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,6 +19,7 @@ Audio find(List<Audio> source, String fromPath) {
 }
 
 class _MiniPlayerState extends State<MiniPlayer> {
+  AssetsAudioPlayer player = AssetsAudioPlayer.withId('0');
   @override
   Widget build(BuildContext context) {
     //Main_Container

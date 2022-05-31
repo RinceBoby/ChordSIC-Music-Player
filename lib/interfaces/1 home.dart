@@ -1,10 +1,10 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:chordsic/interfaces/6%20search.dart';
 import 'package:chordsic/interfaces/mini_player.dart';
+import 'package:chordsic/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,45 +15,10 @@ class Home extends StatefulWidget {
 
 AssetsAudioPlayer player = AssetsAudioPlayer.withId('0');
 final OnAudioQuery audioQuery = OnAudioQuery();
-List<SongModel> allSongs = [];
-List<Audio> songDetails = [];
+//List<SongModel> allSongs = [];
+//List<Audio> songDetails = [];
 
 class _HomeState extends State<Home> {
-//
-//====================Request_Permission====================//
-
-  @override
-  void initState() {
-    super.initState();
-    requestPermission();
-  }
-
-  void requestPermission() async {
-    Permission.storage.request();
-
-//====================Fetching_Songs====================//
-
-    allSongs = await audioQuery.querySongs();
-    for (var i in allSongs) {
-      songDetails.add(
-        Audio.file(
-          i.uri.toString(),
-          metas: Metas(
-            title: i.title,
-            id: i.id.toString(),
-            artist: i.artist,
-          ),
-        ),
-      );
-    }
-  }
-
-//====================Assets_Audio====================//
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   songLists();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -169,20 +134,15 @@ class _HomeState extends State<Home> {
                         loopMode: LoopMode.playlist,
                         playInBackground: PlayInBackground.enabled,
                       );
-                      // Navigator.of(context).push(
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const MiniPlayer(),
-                      //   ),
-                      // );
                     },
 
-              //====================Thumb_Titile_Artist====================//
+                    //====================Thumb_Titile_Artist====================//
 
                     leading: QueryArtworkWidget(
                       id: item.data![index].id,
                       type: ArtworkType.AUDIO,
 
-                  //============No_Thumbnail=============//
+                      //============No_Thumbnail=============//
                       nullArtworkWidget: ClipRRect(
                         borderRadius: const BorderRadius.all(
                           Radius.circular(50),
@@ -193,32 +153,30 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    title: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Text(
-                        item.data![index].title.toString(),
-                        style: GoogleFonts.nunito(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
+                    title: Text(
+                      item.data![index].title.toString(),
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.nunito(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
                       ),
                     ),
-                    subtitle: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Text(
-                        "${item.data![index].artist}",
-                        style: GoogleFonts.nunito(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
+                    subtitle: Text(
+                      item.data![index].artist.toString(),
+                      overflow: TextOverflow.ellipsis,
+                      //"${item.data![index].artist}",//
+                      //====This is another way without toString()====//
+                      style: GoogleFonts.nunito(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
                       ),
                     ),
                     trailing: IconButton(
                       onPressed: () {},
                       icon: const Icon(
-                        Icons.more_vert_outlined,
+                        Icons.favorite_border_rounded,
                       ),
                       iconSize: 30,
                     ),

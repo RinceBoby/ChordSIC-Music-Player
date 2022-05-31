@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//==========This widget isn't used cause we have used on_Audio_query instead of listView Builder==========//
+
 Widget SongListItems({
   required songThumb,
   required albumName,
@@ -109,13 +111,6 @@ Widget SongListItems({
                     Spacer(
                       flex: 1,
                     ),
-                    // Text(
-                    //   time,
-                    //   style: const TextStyle(
-                    //       fontFamily: "Montserrat Alter1",
-                    //       fontWeight: FontWeight.w200,
-                    //       color: Colors.grey),
-                    // ),
                     Spacer(
                       flex: 1,
                     ),

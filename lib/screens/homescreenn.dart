@@ -1,6 +1,6 @@
 import 'package:chordsic/interfaces/1%20home.dart';
 import 'package:chordsic/interfaces/3%20favorite.dart';
-import 'package:chordsic/interfaces/4%20playlist.dart';
+import 'package:chordsic/interfaces/playlist/4%20playlist.dart';
 import 'package:chordsic/interfaces/5%20settings.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

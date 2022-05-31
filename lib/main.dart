@@ -1,28 +1,36 @@
-import 'package:chordsic/dbFunctions/songs_model.dart';
+import 'package:chordsic/dbFunctions/songmodel.dart';
 import 'package:chordsic/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main(List<String> args) async {
+Future<void> main(List<String> args) async {
   //
-  //==========Setup_Hive==========//
-
+  //==========*Hive*==========//
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
+  await Hive.initFlutter(); //Hive_Setup
+  Hive.registerAdapter(SongsAdapter()); //Register_Adapter
+  await Hive.openBox<List>(boxname); //Hive_Box
+  
+  //Favourites
+  List<dynamic> favKey = box.keys.toList();
+  if(!(favKey.contains("favorites"))){
+    List<dynamic>favoriteSongs = [];
+    await box.put("favorites",favoriteSongs);
+  }
+  
+  //Recently_Played
+  List<dynamic>recentKey = box.keys.toList();
+  if(!(recentKey.contains("recentlyPlayed"))){
+    List<dynamic>recentlyPlayed = [];
+    await box.put("recentlyPlayed",recentlyPlayed);
+  }
 
-  //==========Register Adapter==========//
-
-  Hive.registerAdapter(SongsModelAdapter());
-
-  //==========Orientation Setup==========//
-
-  SystemChrome.setPreferredOrientations(
-    [
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ],
-  );
+  //==========*Screen_Orientation*==========//
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   runApp(const MyApp());
 }

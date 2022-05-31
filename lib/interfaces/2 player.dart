@@ -2,6 +2,7 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:chordsic/functions/fact_player.dart';
 import 'package:chordsic/interfaces/1%20home.dart';
+import 'package:chordsic/screens/splashscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,6 +22,7 @@ Audio find(List<Audio> source, String fromPath) {
 }
 
 class _PlayerState extends State<Player> {
+  AssetsAudioPlayer player = AssetsAudioPlayer.withId('0');
   @override
   Widget build(BuildContext context) {
     return Scaffold(

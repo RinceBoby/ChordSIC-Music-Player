@@ -1,7 +1,7 @@
 import 'package:chordsic/interfaces/1%20home.dart';
 import 'package:chordsic/interfaces/2%20player.dart';
 import 'package:chordsic/interfaces/3%20favorite.dart';
-import 'package:chordsic/interfaces/4%20playlist.dart';
+import 'package:chordsic/interfaces/playlist/4%20playlist.dart';
 import 'package:chordsic/interfaces/5%20settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

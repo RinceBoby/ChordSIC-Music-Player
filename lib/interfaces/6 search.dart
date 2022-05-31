@@ -1,6 +1,8 @@
-import 'package:chordsic/interfaces/1%20home.dart';
+// ignore_for_file: file_names
+
 import 'package:chordsic/interfaces/2%20player.dart';
 import 'package:chordsic/interfaces/openPlayer.dart';
+import 'package:chordsic/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -132,7 +134,7 @@ class CustomSearch extends SearchDelegate {
                         onTap: (() async {
                           await 
                           OpenPlayer(
-                            fullSongs: [],
+                            allSongs: [],
                             index: index,
                           ).openAssetPlayer(
                             index: index,
@@ -171,17 +173,15 @@ class CustomSearch extends SearchDelegate {
                             //     ),
                             //   ),
                             // ),
-                            SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Text(
-                            searchSongItem[index].metas.title!,
-                            style: GoogleFonts.nunito(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                            Text(
+                              searchSongItem[index].metas.title!,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.nunito(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        ),
                         subtitle:
                             // SizedBox(
                             //   height: 20,
@@ -198,17 +198,15 @@ class CustomSearch extends SearchDelegate {
                             //     ),
                             //   ),
                             // ),
-                            SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Text(
-                            searchSongItem[index].metas.artist!,
-                            style: GoogleFonts.nunito(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
+                            Text(
+                              searchSongItem[index].metas.artist!,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.nunito(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
                             ),
-                          ),
-                        ),
                         trailing: IconButton(
                           onPressed: () {},
                           icon: const Icon(
