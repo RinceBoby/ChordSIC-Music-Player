@@ -1,4 +1,5 @@
-import 'package:chordsic/functions/fact_playlist.dart';
+// ignore_for_file: file_names
+
 import 'package:chordsic/interfaces/6%20search.dart';
 import 'package:chordsic/interfaces/mini_player.dart';
 import 'package:chordsic/interfaces/playlist/create_playlist.dart';
@@ -68,7 +69,10 @@ class _PlaylistState extends State<Playlist> {
       ),
       body: Column(
         children: [
-          createpl(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: createpl(),
+          ),
           Expanded(
             child: ValueListenableBuilder(
               valueListenable: box.listenable(),
@@ -78,114 +82,193 @@ class _PlaylistState extends State<Playlist> {
                   itemCount: playListName.length,
                   itemBuilder: (context, index) {
                     var playListSongs = box.get(playListName[index]);
-                    return Container(
-                      child: playListName[index] != "music" &&
-                              playListName[index] != "favorites" &&
-                              playListName[index] != "recentlyPlayed"
-                          ? ListTile(
-                              leading: const Icon(
-                                Icons.queue_music_rounded,
-                              ),
-                              title: Text(
-                                playListName[index].toString(),
-                              ),
-                              subtitle: Text(
-                                "${playListSongs!.length}Song",
-                              ),
-                              trailing: PopupMenuButton(
-                                color: Colors.purple[300],
-                                icon: const Icon(
-                                  Icons.more_vert_outlined,
-                                  color: Colors.black,
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+                      child: Container(
+                        // height: 90,
+                        // decoration: BoxDecoration(
+                        //   borderRadius: const BorderRadius.all(
+                        //     Radius.circular(10),
+                        //   ),
+                        //   boxShadow: [
+                        //     BoxShadow(
+                        //       color: Colors.grey.withOpacity(0.2),
+                        //       spreadRadius: 0.3,
+                        //       blurRadius: 1,
+                        //       offset: const Offset(3, 3),
+                        //     ),
+                        //   ],
+                        //   gradient: LinearGradient(
+                        //     colors: [
+                        //       Colors.purpleAccent.withOpacity(0.3),
+                        //       Colors.purpleAccent.withOpacity(0.015),
+                        //     ],
+                        //     begin: Alignment.bottomCenter,
+                        //     end: Alignment.topCenter,
+                        //   ),
+                        // ),
+                        child: playListName[index] != "music" &&
+                                playListName[index] != "favorites" &&
+                                playListName[index] != "recentlyPlayed"
+                            ? ListTile(
+                                leading: const Icon(
+                                  Icons.queue_music_rounded,
                                 ),
-                                itemBuilder: (context) => [
-                                  PopupMenuItem(
-                                    onTap: () {},
-                                    value: 0,
-                                    child: const Text(
-                                      "Rename Playlist",
-                                    ),
+                                title: Text(
+                                  playListName[index].toString().capitalize(),
+                                  style: GoogleFonts.nunito(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
                                   ),
-                                  PopupMenuItem(
-                                    onTap: () {},
-                                    value: 1,
-                                    child: const Text(
-                                      "Remove Playlist",
-                                    ),
+                                ),
+                                subtitle: Text(
+                                  "${playListSongs!.length} Song",
+                                  style: GoogleFonts.nunito(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey,
                                   ),
-                                ],
-                                onSelected: (value) {
-                                  if (value == "1") {
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          backgroundColor:
-                                              Colors.pinkAccent[100],
-                                          title: const Center(
-                                            child: Text(
-                                              "Remove this Playlist",
-                                            ),
-                                          ),
-                                          content: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: const [
-                                              Text(
-                                                "Are you sure",
+                                ),
+                                trailing: PopupMenuButton(
+                                  color: Color.fromARGB(255, 230, 194, 236),
+                                  icon: const Icon(
+                                    Icons.more_vert_outlined,
+                                    color: Colors.black,
+                                  ),
+                                  itemBuilder: (context) => [
+                                    PopupMenuItem(
+                                      onTap: () {},
+                                      value: "0",
+                                      child: Text(
+                                        "Rename Playlist",
+                                        style: GoogleFonts.nunito(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    PopupMenuItem(
+                                      onTap: () {},
+                                      value: "1",
+                                      child: Text(
+                                        "Remove Playlist",
+                                        style: GoogleFonts.nunito(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                  onSelected: (value) {
+                                    if (value == "1") {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            backgroundColor:
+                                                Colors.purple[100],
+                                            title: Center(
+                                              child: Text(
+                                                "Remove this Playlist",
+                                                style: GoogleFonts.nunito(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.black,
+                                                ),
                                               ),
+                                            ),
+                                            content: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 8.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    "Are you sure",
+                                                    style: GoogleFonts.nunito(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Colors.red,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            actions: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 20),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child: Text(
+                                                        "Cancel",
+                                                        style:
+                                                            GoogleFonts.nunito(
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Colors.black,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                        box.delete(playListName[
+                                                            index]);
+                                                        setState(() {
+                                                          playListName =
+                                                              box.keys.toList();
+                                                        });
+                                                      },
+                                                      child: Text(
+                                                        "Yes",
+                                                        style:
+                                                            GoogleFonts.nunito(
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Colors.black,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
                                             ],
-                                          ),
-                                          actions: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: const Text(
-                                                    "Cancel",
-                                                  ),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                    box.delete(
-                                                        playListName[index]);
-                                                    setState(() {
-                                                      playListName =
-                                                          box.keys.toList();
-                                                    });
-                                                  },
-                                                  child: const Text(
-                                                    "Yes",
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  }
-                                  ;
-                                  if (value == "0") {
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return UpdatePlaylist(
-                                          playListNames: playListName[index],
-                                        );
-                                      },
-                                    );
-                                  }
-                                },
-                              ),
-                            )
-                          : Container(),
+                                          );
+                                        },
+                                      );
+                                    }
+                                    if (value == "0") {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return UpdatePlaylist(
+                                            playListNames: playListName[index],
+                                          );
+                                        },
+                                      );
+                                    }
+                                  },
+                                ),
+                              )
+                            : Container(),
+                      ),
                     );
                   },
                 );
@@ -249,5 +332,12 @@ class _PlaylistState extends State<Playlist> {
         ],
       ),
     );
+  }
+}
+
+//==========Capitalize_First_Letter===========//
+extension CapitalExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
   }
 }

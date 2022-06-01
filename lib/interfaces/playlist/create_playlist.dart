@@ -1,5 +1,6 @@
 import 'package:chordsic/dbFunctions/songmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CreatePl extends StatefulWidget {
   const CreatePl({Key? key}) : super(key: key);
@@ -17,43 +18,54 @@ class _CreatePlState extends State<CreatePl> {
     final formKey = GlobalKey<FormState>();
 
     return AlertDialog(
-      backgroundColor: Colors.pink[100],
+      backgroundColor: Color.fromARGB(255, 230, 194, 236),
       alignment: Alignment.center,
-      title: const Center(
+      title: Center(
         child: Text(
-          "Give Your Playlist Name",
+          "Name your Playlist",
+          style: GoogleFonts.nunito(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Colors.black,
+          ),
         ),
       ),
 
-      // form validation
+      //==============Form_Validation==============//
       content: Form(
         key: formKey,
         child: TextFormField(
-            onChanged: (value) {
-              title = value.trim();
-            },
-            validator: (value) {
-              List keys = box.keys.toList();
-              if (value!.trim() == "") {
-                return "Name Required";
-              }
-              if (keys.where((element) => element == value.trim()).isNotEmpty) {
-                return "This Name Already Exist";
-              }
-              return null;
-            },
-            style: const TextStyle(color: Colors.white),
-            decoration: const InputDecoration(
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green, width: 50),
+          onChanged: (value) {
+            title = value.trim();
+          },
+          validator: (value) {
+            List keys = box.keys.toList();
+            if (value!.trim() == "") {
+              return "Name Required";
+            }
+            if (keys.where((element) => element == value.trim()).isNotEmpty) {
+              return "This Name Already Exist";
+            }
+            return null;
+          },
+          style: const TextStyle(color: Colors.black),
+          decoration: const InputDecoration(
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Color.fromARGB(255, 64, 45, 67),
+                //width: 50,
               ),
-              // fillColor: textWhite,
-              hintText: 'Playlist Name',
-              hintStyle: TextStyle(color: Colors.grey),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey, width: 50),
+            ),
+            hintText: 'Playlist Name',
+            hintStyle: TextStyle(color: Colors.grey),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Color.fromARGB(255, 64, 45, 67),
+                //width: 50,
               ),
-            )),
+            ),
+          ),
+        ),
       ),
       actions: [
         Padding(
@@ -62,10 +74,12 @@ class _CreatePlState extends State<CreatePl> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextButton(
-                child: const Text(
+                child: Text(
                   "Cancel",
-                  style: TextStyle(
-                    color: Colors.white,
+                  style: GoogleFonts.nunito(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
                   ),
                 ),
                 onPressed: () {
@@ -73,12 +87,14 @@ class _CreatePlState extends State<CreatePl> {
                 },
               ),
 
-              // add playlist from db
+              //===============Add_playlist_from_DB===============//
               TextButton(
-                child: const Text(
+                child: Text(
                   "Create",
-                  style: TextStyle(
-                    color: Colors.white,
+                  style: GoogleFonts.nunito(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
                   ),
                 ),
                 onPressed: () {

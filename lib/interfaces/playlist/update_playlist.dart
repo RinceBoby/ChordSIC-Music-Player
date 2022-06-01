@@ -1,5 +1,6 @@
 import 'package:chordsic/dbFunctions/songmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class UpdatePlaylist extends StatelessWidget {
   String playListNames;
@@ -11,13 +12,19 @@ class UpdatePlaylist extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Colors.pinkAccent[100],
+      backgroundColor:const Color.fromARGB(255, 230, 194, 236),
       title: Center(
         child: Text(
           'Edit Your Playlist Name',
+          style: GoogleFonts.nunito(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: Colors.black,
+          ),
         ),
       ),
       content: Form(
+        key: formKey,
         child: TextFormField(
           initialValue: playListNames,
           onChanged: (value) {
@@ -31,16 +38,16 @@ class UpdatePlaylist extends StatelessWidget {
             return null;
           },
           decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(
-                color: Colors.green,
-                width: 5,
+                color: Colors.black,
+                //width: 5,
               ),
             ),
-            enabledBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(
-                color: Colors.white,
-                width: 50,
+                color: Colors.black,
+                //width: 50,
               ),
             ),
             fillColor: Colors.pinkAccent[100],
@@ -55,7 +62,14 @@ class UpdatePlaylist extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text("Cancel"),
+              child: Text(
+                "Cancel",
+                style: GoogleFonts.nunito(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -68,12 +82,27 @@ class UpdatePlaylist extends StatelessWidget {
 
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
+                    backgroundColor: Colors.purple[100],
                     behavior: SnackBarBehavior.floating,
-                    content: Text("Playlist Renamed"),
+                    content: Text(
+                      "Playlist Renamed",
+                      style: GoogleFonts.nunito(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
                 );
               },
-              child: Text("Update"),
+              child: Text(
+                "Update",
+                style: GoogleFonts.nunito(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
             ),
           ],
         ),
