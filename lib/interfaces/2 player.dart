@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:chordsic/functions/fact_player.dart';
-import 'package:chordsic/interfaces/1%20home.dart';
 import 'package:chordsic/screens/splashscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,13 +22,13 @@ Audio find(List<Audio> source, String fromPath) {
 
 class _PlayerState extends State<Player> {
   AssetsAudioPlayer player = AssetsAudioPlayer.withId('0');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 221, 255, 252),
 
-//===============Appbar===============//
-
+      //<<<<<Appbar>>>>>//
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 221, 255, 252),
         elevation: 0,
@@ -37,7 +36,7 @@ class _PlayerState extends State<Player> {
           padding: const EdgeInsets.only(left: 10),
           child: IconButton(
             onPressed: () {},
-            icon:const Icon(
+            icon: const Icon(
               CupertinoIcons.plus_app,
               color: Colors.grey,
             ),
@@ -58,10 +57,12 @@ class _PlayerState extends State<Player> {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                //<<<<<<<<<<<Here>>>>>>>>>>>//
+              },
               icon: const Icon(FontAwesomeIcons.heart),
               color: Colors.grey,
-              iconSize: 30,
+              iconSize: 25,
             ),
           ),
         ],
@@ -73,8 +74,7 @@ class _PlayerState extends State<Player> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 //
-//===============Thumbnail===============//
-
+              //<<<<<Thumbnail>>>>>//
               Center(
                 child: Container(
                   height: 300,
@@ -110,17 +110,11 @@ class _PlayerState extends State<Player> {
                   ),
                 ),
               ),
-
-//===============Title_&_Artist===============//
-
+              
+              //<<<<<Title_&_Artist>>>>>//
               const SizedBox(
                 height: 20,
               ),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-              // child: SingleChildScrollView(
-              //   scrollDirection: Axis.horizontal,
-
               Column(
                 children: [
                   SizedBox(
@@ -153,46 +147,21 @@ class _PlayerState extends State<Player> {
                   ),
                 ],
               ),
-
-              // child: Text(
-              //   player.getCurrentAudioTitle,
-              // style: GoogleFonts.nunito(
-              //   fontSize: 25,
-              //   fontWeight: FontWeight.w600,
-              //   color: Colors.black,
-              // ),
-              // ),
-              //),
-              //),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-              //   child: SingleChildScrollView(
-              //     scrollDirection: Axis.horizontal,
-              //     child: Text(
-              //       player.getCurrentAudioArtist,
-              //       style: GoogleFonts.nunito(
-              //           fontSize: 20,
-              //           fontWeight: FontWeight.w600,
-              //           color: Colors.black),
-              //     ),
-              //   ),
-              // ),
               const SizedBox(
                 height: 0,
               ),
 
-//===============Progress_Bar===============//
-
+              //<<<<<Progress_Bar>>>>>//
               const Padding(
                 padding: EdgeInsets.only(left: 30, right: 30, top: 50),
                 child: SeekBar(),
               ),
 
-//===============Player_Controls===============//
-
+              //<<<<<Player_Controls>>>>>//
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  //<<<<<Shuffle>>>>>
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(FontAwesomeIcons.shuffle),
@@ -200,7 +169,7 @@ class _PlayerState extends State<Player> {
                     color: Colors.purpleAccent,
                   ),
 
-                  //Previous
+                  //<<<<<Previous>>>>>
                   IconButton(
                     onPressed: playing.index != 0
                         ? () {
@@ -221,7 +190,7 @@ class _PlayerState extends State<Player> {
                   ),
                   const SizedBox(width: 8),
 
-                  //Play_Pause
+                  //<<<<<Play_Pause>>>>>
                   Container(
                     height: 100,
                     width: 100,
@@ -247,7 +216,7 @@ class _PlayerState extends State<Player> {
                     ),
                   ),
 
-                  //Next
+                  //<<<<<Next>>>>>
                   IconButton(
                     onPressed: playing.index == allSongs.length - 1
                         ? () {}
@@ -268,6 +237,8 @@ class _PlayerState extends State<Player> {
                     iconSize: 40,
                     color: Colors.purpleAccent,
                   ),
+
+                  //<<<<<Repeat>>>>>
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(FontAwesomeIcons.rotate),

@@ -26,8 +26,7 @@ class Settings extends StatelessWidget {
         centerTitle: true,
       ),
 
-//===============Settings_List===============//
-
+    //<<<<<Settings_List>>>>>//
       body: Padding(
         padding: const EdgeInsets.only(left: 10, top: 10),
         child: ListView(
@@ -53,8 +52,7 @@ class Settings extends StatelessWidget {
               settext: ' About',
             ),
 
-//===============Version===============//
-
+          //<<<<<Version>>>>>//
             Padding(
               padding: const EdgeInsets.only(top: 335),
               child: Column(

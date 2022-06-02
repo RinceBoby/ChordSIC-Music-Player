@@ -4,8 +4,8 @@ import 'package:chordsic/dbFunctions/songmodel.dart';
 import 'package:chordsic/interfaces/1%20home.dart';
 import 'package:chordsic/screens/homescreenn.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:on_audio_room/on_audio_room.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -14,25 +14,23 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-final Box<List<dynamic>> box = StorageBox.getInstance();
-//final OnAudioQuery audioQuery = OnAudioQuery();
 final AssetsAudioPlayer player = AssetsAudioPlayer.withId('0');
+final OnAudioRoom audioRoom = OnAudioRoom();
 
 List<SongModel> allSongs = [];
 List<Songs> mappedSongs = [];
 List<Audio> songDetails = [];
 List<Songs> dbSongs = [];
-
+final box = Boxes.getInstance();
 
 class _SplashScreenState extends State<SplashScreen> {
 //
-//===============Request_Permission===============//
+//<<<<<Request_Permission>>>>>//
   @override
   void initState() {
     super.initState();
     storagePermission();
   }
-
   storagePermission() async {
     bool permissionStatus = await audioQuery.permissionsStatus();
     if (!permissionStatus) {
@@ -48,9 +46,6 @@ class _SplashScreenState extends State<SplashScreen> {
             songname: audio.title,
             songurl: audio.uri))
         .toList();
-
-    await box.put("music", mappedSongs);
-    dbSongs = box.get("music") as List<Songs>;
 
     for (var i in allSongs) {
       songDetails.add(
@@ -75,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  //Design
+  //<<<<<Splash_Design>>>>>//
   @override
   Widget build(BuildContext context) {
     return Scaffold(

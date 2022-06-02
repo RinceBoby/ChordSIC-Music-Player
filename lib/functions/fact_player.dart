@@ -1,6 +1,6 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
-import 'package:chordsic/interfaces/1%20home.dart';
+import 'package:chordsic/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 class SeekBar extends StatefulWidget {

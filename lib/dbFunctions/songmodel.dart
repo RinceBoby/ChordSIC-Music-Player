@@ -1,7 +1,8 @@
+import 'package:chordsic/main.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 part 'songmodel.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 15)
 class Songs extends HiveObject {
   @HiveField(0)
   String? artist;
@@ -22,11 +23,8 @@ class Songs extends HiveObject {
   });
 }
 
-String boxname = "songs";
-
-class StorageBox {
-  static Box<List>? _box;
-  static Box<List> getInstance() {
-    return _box ??= Hive.box(boxname);
+class Boxes{
+  static Box<List>getInstance(){
+    return Hive.box<List>(boxname);
   }
 }

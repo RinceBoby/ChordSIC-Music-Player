@@ -3,30 +3,18 @@ import 'package:chordsic/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:on_audio_room/on_audio_room.dart';
 
-Future<void> main(List<String> args) async {
-  //
-  //==========*Hive*==========//
+String boxname = "songname";
+void main(List<String> args) async {
+  //<<<<<Hive>>>>>//
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter(); //Hive_Setup
+  await OnAudioRoom().initRoom();//On_Audio_Room_Intialize
+  await Hive.initFlutter(); //Hive_Intialize
   Hive.registerAdapter(SongsAdapter()); //Register_Adapter
-  await Hive.openBox<List>(boxname); //Hive_Box
-  
-  //Favourites
-  List<dynamic> favKey = box.keys.toList();
-  if(!(favKey.contains("favorites"))){
-    List<dynamic>favoriteSongs = [];
-    await box.put("favorites",favoriteSongs);
-  }
-  
-  //Recently_Played
-  List<dynamic>recentKey = box.keys.toList();
-  if(!(recentKey.contains("recentlyPlayed"))){
-    List<dynamic>recentlyPlayed = [];
-    await box.put("recentlyPlayed",recentlyPlayed);
-  }
+  await Hive.openBox<List>(boxname);//Hive_Box
 
-  //==========*Screen_Orientation*==========//
+  //<<<<<Screen_Orientation>>>>>//
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -52,9 +40,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//==========Capitalize_First_Letter===========//
-extension CapitalExtension on String {
-  String capitalize() {
-    return "${this[0].toUpperCase()}${this.substring(1)}";
-  }
-}

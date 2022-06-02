@@ -13,7 +13,6 @@ class OpenPlayer {
   });
 
   final AssetsAudioPlayer player = AssetsAudioPlayer.withId('0');
-
   openAssetPlayer({List<Audio>? songs, required int index}) async {
     player.open(
       Playlist(audios: songs, startIndex: index),

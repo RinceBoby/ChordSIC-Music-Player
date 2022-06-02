@@ -34,8 +34,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
 
-            //Container_ListTile
-
+            //<<<<<Container_ListTile>>>>>//
             child: Container(
               height: 80,
               width: MediaQuery.of(context).size.width,
@@ -62,8 +61,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 5),
 
-                //ListTile
-
+                //<<<<<ListTile>>>>>//
                 child: Center(
                   child: ListTile(
                     onTap: () {
@@ -74,8 +72,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
                       );
                     },
 
-                    //Thumbnail
-
+                    //<<<<<Thumbnail>>>>>//
                     leading: player.builderCurrent(
                       builder: (context, playing) {
                         final myAudio =
@@ -95,8 +92,8 @@ class _MiniPlayerState extends State<MiniPlayer> {
                         );
                       },
                     ),
-                    //Song_Name
 
+                    //<<<<<Song_Name>>>>>//
                     title: SizedBox(
                       height: 22,
                       child: Marquee(
@@ -111,17 +108,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
                       ),
                     ),
 
-                    // SingleChildScrollView(
-                    //   scrollDirection: Axis.horizontal,
-                    //   child: Text(player.getCurrentAudioTitle,
-                    //       style: GoogleFonts.nunito(
-                    //           fontSize: 20,
-                    //           fontWeight: FontWeight.w600,
-                    //           color: Colors.black)),
-                    // ),
-
-                    //Artist_Name
-
+                    //<<<<<Artist_Name>>>>>//
                     subtitle: SizedBox(
                       height: 15,
                       child: Marquee(
@@ -135,16 +122,6 @@ class _MiniPlayerState extends State<MiniPlayer> {
                         ),
                       ),
                     ),
-                    // SingleChildScrollView(
-                    //   scrollDirection: Axis.horizontal,
-                    //   child: Text(
-                    //     player.getCurrentAudioArtist,
-                    //     style: GoogleFonts.nunito(
-                    //         fontSize: 15,
-                    //         fontWeight: FontWeight.w600,
-                    //         color: Colors.black),
-                    //   ),
-                    // ),
                     trailing: Wrap(
                       alignment: WrapAlignment.center,
                       children: [
@@ -169,7 +146,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
                         ),
                         const SizedBox(width: 8),
 
-                        //Play
+                        //<<<<<Play>>>>>//
                         PlayerBuilder.isPlaying(
                           player: player,
                           builder: (context, isPlaying) {
@@ -187,7 +164,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
                           },
                         ),
 
-                        //Next
+                        //<<<<<Next>>>>>//
                         IconButton(
                           onPressed: playing.index == allSongs.length - 1
                               ? () {}
