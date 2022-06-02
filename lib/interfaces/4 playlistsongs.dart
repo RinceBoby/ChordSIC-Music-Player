@@ -33,7 +33,7 @@ class _PlayListSongsState extends State<PlayListSongs> {
         backgroundColor: const Color.fromARGB(255, 221, 255, 252),
         elevation: 0,
         title: Text(
-          widget.name,
+          widget.name.capitalised(),
           style: GoogleFonts.nunito(
             fontSize: 30,
             letterSpacing: 1,
@@ -149,7 +149,7 @@ class _PlayListSongsState extends State<PlayListSongs> {
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(300),
                               ),
-                              child: Image.asset('assets/Images/apple.jpg'),
+                              child: Image.asset('assets/images/Apple-Music-Artist-Lover.png'),
                             ),
                           ),
                         ),
@@ -183,5 +183,11 @@ class _PlayListSongsState extends State<PlayListSongs> {
         ),
       ),
     );
+  }
+}
+//<<<<<Capitalize_First_Letter>>>>>//
+extension CapitalExtension on String {
+  String capitalised() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
   }
 }

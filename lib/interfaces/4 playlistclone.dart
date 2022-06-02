@@ -44,7 +44,7 @@ class _PlayListCloneState extends State<PlayListClone> {
               showDialog<String>(
                 context: context,
                 builder: (BuildContext context) => AlertDialog(
-                  backgroundColor:const Color.fromARGB(255, 225, 173, 235),
+                  backgroundColor: const Color.fromARGB(255, 225, 173, 235),
                   title: Text(
                     "Create New Playlist",
                     style: GoogleFonts.nunito(
@@ -172,12 +172,14 @@ class _PlayListCloneState extends State<PlayListClone> {
                               ),
                             ),
                           );
+                        setState(() {});
                       },
                       onLongPress: () {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) => AlertDialog(
-                            backgroundColor:const Color.fromARGB(255, 223, 172, 233),
+                            backgroundColor:
+                                const Color.fromARGB(255, 223, 172, 233),
                             title: Text(
                               'Delete Playlist?',
                               style: GoogleFonts.nunito(
@@ -197,7 +199,8 @@ class _PlayListCloneState extends State<PlayListClone> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  audioRoom.deletePlaylist(item.data![index].key);
+                                  audioRoom
+                                      .deletePlaylist(item.data![index].key);
                                   setState(
                                     () {
                                       Navigator.of(context).pop();
@@ -250,7 +253,7 @@ class _PlayListCloneState extends State<PlayListClone> {
                         style: GoogleFonts.nunito(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
-                          color:const Color.fromARGB(255, 80, 73, 73),
+                          color: const Color.fromARGB(255, 80, 73, 73),
                         ),
                       ),
                     ),

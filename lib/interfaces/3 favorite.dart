@@ -23,10 +23,10 @@ class _FavoriteState extends State<Favorite> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 221, 255, 252),
 
-    //<<<<<Mini_Player>>>>>//
+      //<<<<<Mini_Player>>>>>//
       bottomSheet: const MiniPlayer(),
 
-    //<<<<<Appbar>>>>>//
+      //<<<<<Appbar>>>>>//
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 221, 255, 252),
@@ -170,7 +170,8 @@ class _FavoriteState extends State<Favorite> {
                               ),
                               actions: <Widget>[
                                 TextButton(
-                                  onPressed: () => Navigator.pop(context, 'Cancel'),
+                                  onPressed: () =>
+                                      Navigator.pop(context, 'Cancel'),
                                   child: Text(
                                     "Cancel",
                                     style: GoogleFonts.nunito(
@@ -215,7 +216,7 @@ class _FavoriteState extends State<Favorite> {
                                 Radius.circular(30),
                               ),
                               child: Image.asset(
-                                'assets/Images/apple.jpg',
+                                'assets/images/Apple-Music-Artist-Lover.png',
                               ),
                             ),
                           ),

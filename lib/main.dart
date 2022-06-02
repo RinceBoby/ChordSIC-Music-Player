@@ -7,12 +7,12 @@ import 'package:on_audio_room/on_audio_room.dart';
 
 String boxname = "songname";
 void main(List<String> args) async {
-  //<<<<<Hive>>>>>//
+
   WidgetsFlutterBinding.ensureInitialized();
-  await OnAudioRoom().initRoom();//On_Audio_Room_Intialize
-  await Hive.initFlutter(); //Hive_Intialize
-  Hive.registerAdapter(SongsAdapter()); //Register_Adapter
-  await Hive.openBox<List>(boxname);//Hive_Box
+  await OnAudioRoom().initRoom();//<<<<<On_Audio_Room_Intialize>>>>>
+  await Hive.initFlutter(); //<<<<<Hive_Intialize>>>>>
+  Hive.registerAdapter(SongsAdapter()); //<<<<<Register_Adapter>>>>>
+  await Hive.openBox<List>(boxname);//<<<<<Hive_Box>>>>>
 
   //<<<<<Screen_Orientation>>>>>//
   SystemChrome.setPreferredOrientations([

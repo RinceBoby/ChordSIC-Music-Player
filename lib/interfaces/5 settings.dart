@@ -54,7 +54,7 @@ class Settings extends StatelessWidget {
 
           //<<<<<Version>>>>>//
             Padding(
-              padding: const EdgeInsets.only(top: 335),
+              padding: const EdgeInsets.only(top: 410),
               child: Column(
                 children: const [
                   Text(
