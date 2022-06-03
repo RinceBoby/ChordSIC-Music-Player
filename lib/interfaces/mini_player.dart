@@ -75,10 +75,8 @@ class _MiniPlayerState extends State<MiniPlayer> {
                     //<<<<<Thumbnail>>>>>//
                     leading: player.builderCurrent(
                       builder: (context, playing) {
-                        final myAudio =
-                            find(songDetails, playing.audio.assetAudioPath);
                         return QueryArtworkWidget(
-                          id: int.parse(myAudio.metas.id.toString()),
+                          id: int.parse(playing.audio.audio.metas.id.toString()),
                           type: ArtworkType.AUDIO,
                           nullArtworkWidget: ClipRRect(
                             borderRadius: const BorderRadius.all(

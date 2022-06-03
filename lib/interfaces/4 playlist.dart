@@ -152,21 +152,24 @@ class _PlaylistState extends State<Playlist> {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                     child: ListTile(
-                      onTap: () {
-                        Navigator.push(
+                      onTap: () async {
+                        await Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => PlayListSongs(
-                                name: item.data![index].playlistName,
-                                playlistkey: playList[index].key),
+                              name: item.data![index].playlistName,
+                              playlistkey: playList[index].key,
+                            ),
                           ),
                         );
+                        setState(() {});
                       },
                       onLongPress: () {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) => AlertDialog(
-                            backgroundColor:const Color.fromARGB(255, 222, 149, 235),
+                            backgroundColor:
+                                const Color.fromARGB(255, 222, 149, 235),
                             title: Text(
                               'Delete Playlist?',
                               style: GoogleFonts.nunito(
@@ -186,7 +189,8 @@ class _PlaylistState extends State<Playlist> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  audioRoom.deletePlaylist(item.data![index].key);
+                                  audioRoom
+                                      .deletePlaylist(item.data![index].key);
                                   setState(
                                     () {
                                       Navigator.of(context).pop();
@@ -233,7 +237,6 @@ class _PlaylistState extends State<Playlist> {
                           ),
                         ),
                       ),
-                      
                       subtitle: Text(
                         item.data![index].playlistSongs.length.toString() +
                             " Songs",

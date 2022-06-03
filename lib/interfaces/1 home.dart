@@ -1,5 +1,4 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:chordsic/interfaces/3%20favorite.dart';
 import 'package:chordsic/interfaces/4%20playlistclone.dart';
 import 'package:chordsic/interfaces/6%20search.dart';
 import 'package:chordsic/interfaces/mini_player.dart';
@@ -7,7 +6,6 @@ import 'package:chordsic/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:on_audio_room/details/rooms/favorites/favorites_entity.dart';
 import 'package:on_audio_room/on_audio_room.dart';
 
 class Home extends StatefulWidget {
@@ -17,11 +15,7 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-//AssetsAudioPlayer player = AssetsAudioPlayer.withId('0');
 final OnAudioQuery audioQuery = OnAudioQuery();
-
-// List<SongModel> allSongs = [];
-// List<Audio> songDetails = [];
 
 class _HomeState extends State<Home> {
   @override
@@ -177,7 +171,7 @@ class _HomeState extends State<Home> {
                             id: item.data![index].id,
                             type: ArtworkType.AUDIO,
 
-                            //<<<<<No_Thumbnail>>>>>//
+                            //<<<<<If_No_Thumbnail>>>>>//
                             nullArtworkWidget: ClipRRect(
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(50),

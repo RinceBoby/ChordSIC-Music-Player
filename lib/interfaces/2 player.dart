@@ -69,7 +69,6 @@ class _PlayerState extends State<Player> {
       ),
       body: player.builderCurrent(
         builder: (context, playing) {
-          final myAudio = find(songDetails, playing.audio.assetAudioPath);
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -96,7 +95,8 @@ class _PlayerState extends State<Player> {
                     size: 2000,
                     artworkFit: BoxFit.contain,
                     artworkBorder: BorderRadius.circular(250),
-                    id: int.parse(myAudio.metas.id!),
+                    id: int.parse(
+                              playing.audio.audio.metas.id.toString()),
                     type: ArtworkType.AUDIO,
                     nullArtworkWidget: ClipRRect(
                       borderRadius: const BorderRadius.all(
