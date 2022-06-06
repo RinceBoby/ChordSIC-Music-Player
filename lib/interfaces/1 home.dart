@@ -182,6 +182,8 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                           ),
+
+                          //<<<<<Songname>>>>>//
                           title: Text(
                             item.data![index].title.toString(),
                             overflow: TextOverflow.ellipsis,
@@ -191,6 +193,8 @@ class _HomeState extends State<Home> {
                               color: Colors.black,
                             ),
                           ),
+
+                          //<<<<<Artist>>>>>//
                           subtitle: Text(
                             item.data![index].artist.toString(),
                             overflow: TextOverflow.ellipsis,
@@ -204,6 +208,8 @@ class _HomeState extends State<Home> {
                           ),
                           trailing: Wrap(
                             children: [
+                              //
+                              //<<<<<<Favorite>>>>>>//
                               InkWell(
                                 onTap: () {
                                   if (!isFav) {
@@ -263,6 +269,8 @@ class _HomeState extends State<Home> {
                               const SizedBox(
                                 width: 4,
                               ),
+
+                              //<<<<<+_Playlist>>>>>//
                               InkWell(
                                 onTap: () => showDialog(
                                   context: context,
@@ -298,7 +306,8 @@ class _HomeState extends State<Home> {
                                             MaterialPageRoute(
                                               builder: (context) =>
                                                   PlayListClone(
-                                                      songIndex: index),
+                                                songIndex: index,
+                                              ),
                                             ),
                                           );
                                           setState(() {});

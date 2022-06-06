@@ -26,33 +26,51 @@ class Settings extends StatelessWidget {
         centerTitle: true,
       ),
 
-    //<<<<<Settings_List>>>>>//
+      //<<<<<Settings_List>>>>>//
       body: Padding(
         padding: const EdgeInsets.only(left: 10, top: 10),
         child: ListView(
           children: [
             const SettingsData(
-              setbullets: Icons.share_outlined,
-              settext: ' Share',
+              settext: "  Share",
+              seticon: Icons.share_outlined,
             ),
+            const SizedBox(height: 10),
+
             const SettingsData(
-              setbullets: Icons.privacy_tip_outlined,
-              settext: ' Privacy Policy',
+              settext: "  Privacy Policy",
+              seticon: Icons.privacy_tip_outlined,
             ),
+            const SizedBox(height: 10),
+
             const SettingsData(
-              setbullets: Icons.event_note_outlined,
-              settext: ' Trems and Conditions',
+              settext: "  Terms and Conditions",
+              seticon: Icons.event_note_outlined,
             ),
+            const SizedBox(height: 10),
+
             const SettingsData(
-              setbullets: Icons.feedback_outlined,
-              settext: ' Feedback',
+              settext: "  Feedback",
+              seticon: Icons.feedback_outlined,
             ),
-            const SettingsData(
-              setbullets: Icons.info_outline,
-              settext: ' About',
+            const SizedBox(height: 10),
+
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AboutData(),
+                  ),
+                );
+              },
+              child: const SettingsData(
+                settext: "  About",
+                seticon: Icons.info_outline,
+              ),
             ),
 
-          //<<<<<Version>>>>>//
+            //<<<<<Version>>>>>//
             Padding(
               padding: const EdgeInsets.only(top: 410),
               child: Column(
@@ -80,6 +98,27 @@ class Settings extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+//<<<<<About>>>>>//
+class AboutData extends StatelessWidget {
+  const AboutData({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return 
+    Theme(
+      data: ThemeData.from(
+        colorScheme: ColorScheme.fromSwatch(
+          accentColor:const Color.fromARGB(255, 221, 255, 252),
+        ),
+      ),
+      child: const LicensePage(
+        applicationName: 'ChoordSIC',
+        applicationVersion: '1.0.0',
       ),
     );
   }

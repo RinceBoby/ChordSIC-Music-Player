@@ -2,7 +2,6 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:chordsic/functions/fact_player.dart';
 import 'package:chordsic/screens/splashscreen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,17 +31,32 @@ class _PlayerState extends State<Player> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 221, 255, 252),
         elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              CupertinoIcons.plus_app,
-              color: Colors.grey,
-            ),
-            iconSize: 30,
-          ),
-        ),
+
+        //<<<<<+_Playlist>>>>>//
+        // leading: Padding(
+        //   padding: const EdgeInsets.only(left: 10),
+        //   child: IconButton(
+        //     onPressed: () async {
+        //       // Navigator.pop(context, 'Yes');
+        //       // Navigator.push(
+        //       //   context,
+        //       //   MaterialPageRoute(
+        //       //     builder: (context) => PlayListClone(
+        //       //       songIndex: index,
+        //       //     ),
+        //       //   ),
+        //       // );
+        //       setState(() {});
+        //     },
+        //     icon: const Icon(
+        //       CupertinoIcons.plus_app,
+        //       color: Colors.grey,
+        //     ),
+        //     iconSize: 30,
+        //   ),
+        // ),
+
+        //<<<<<Heading>>>>>//
         title: Text(
           'Now Playing',
           style: GoogleFonts.nunito(
@@ -53,26 +67,28 @@ class _PlayerState extends State<Player> {
           ),
         ),
         centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: IconButton(
-              onPressed: () {
-                //<<<<<<<<<<<Here>>>>>>>>>>>//
-              },
-              icon: const Icon(FontAwesomeIcons.heart),
-              color: Colors.grey,
-              iconSize: 25,
-            ),
-          ),
-        ],
+
+        // //<<<<<Favorite>>>>>//
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.only(right: 10),
+        //     child: IconButton(
+        //       onPressed: () {},
+        //       icon: const Icon(FontAwesomeIcons.heart),
+        //       color: Colors.grey,
+        //       iconSize: 25,
+        //     ),
+        //   ),
+        // ],
       ),
+
+      //<<<<<Body>>>>>//
       body: player.builderCurrent(
         builder: (context, playing) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-//
+              //
               //<<<<<Thumbnail>>>>>//
               Center(
                 child: Container(
@@ -95,8 +111,7 @@ class _PlayerState extends State<Player> {
                     size: 2000,
                     artworkFit: BoxFit.contain,
                     artworkBorder: BorderRadius.circular(250),
-                    id: int.parse(
-                              playing.audio.audio.metas.id.toString()),
+                    id: int.parse(playing.audio.audio.metas.id.toString()),
                     type: ArtworkType.AUDIO,
                     nullArtworkWidget: ClipRRect(
                       borderRadius: const BorderRadius.all(
@@ -110,7 +125,7 @@ class _PlayerState extends State<Player> {
                   ),
                 ),
               ),
-              
+
               //<<<<<Title_&_Artist>>>>>//
               const SizedBox(
                 height: 20,
@@ -161,7 +176,7 @@ class _PlayerState extends State<Player> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  //<<<<<Shuffle>>>>>
+                  //<<<<<Shuffle>>>>>//
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(FontAwesomeIcons.shuffle),
@@ -169,7 +184,7 @@ class _PlayerState extends State<Player> {
                     color: Colors.purpleAccent,
                   ),
 
-                  //<<<<<Previous>>>>>
+                  //<<<<<Previous>>>>>//
                   IconButton(
                     onPressed: playing.index != 0
                         ? () {
@@ -190,7 +205,7 @@ class _PlayerState extends State<Player> {
                   ),
                   const SizedBox(width: 8),
 
-                  //<<<<<Play_Pause>>>>>
+                  //<<<<<Play_Pause>>>>>//
                   Container(
                     height: 100,
                     width: 100,
@@ -216,7 +231,7 @@ class _PlayerState extends State<Player> {
                     ),
                   ),
 
-                  //<<<<<Next>>>>>
+                  //<<<<<Next>>>>>//
                   IconButton(
                     onPressed: playing.index == allSongs.length - 1
                         ? () {}
@@ -238,7 +253,7 @@ class _PlayerState extends State<Player> {
                     color: Colors.purpleAccent,
                   ),
 
-                  //<<<<<Repeat>>>>>
+                  //<<<<<Repeat>>>>>//
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(FontAwesomeIcons.rotate),

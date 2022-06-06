@@ -128,6 +128,22 @@ class _PlayListSongsState extends State<PlayListSongs> {
                           await audioRoom.deleteFrom(
                               RoomType.PLAYLIST, playlistsongs[index].id,
                               playlistKey: widget.playlistkey);
+                          ScaffoldMessenger.of(context)
+                            ..removeCurrentSnackBar()
+                            ..showSnackBar(
+                              SnackBar(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 219, 147, 232),
+                                content: Text(
+                                  'Song Removed From Playlist',
+                                  style: GoogleFonts.nunito(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            );
                           setState(() {});
                           // Navigator.pop(context, 'OK');
                         },
@@ -136,8 +152,8 @@ class _PlayListSongsState extends State<PlayListSongs> {
                               Playlist(audios: playListList, startIndex: index),
                               showNotification: true,
                               loopMode: LoopMode.playlist,
-                              notificationSettings:
-                                  const NotificationSettings(stopEnabled: false));
+                              notificationSettings: const NotificationSettings(
+                                  stopEnabled: false));
                         },
                         leading: Container(
                           width: 60,
@@ -149,7 +165,8 @@ class _PlayListSongsState extends State<PlayListSongs> {
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(300),
                               ),
-                              child: Image.asset('assets/images/Apple-Music-Artist-Lover.png'),
+                              child: Image.asset(
+                                  'assets/images/Apple-Music-Artist-Lover.png'),
                             ),
                           ),
                         ),
@@ -185,6 +202,7 @@ class _PlayListSongsState extends State<PlayListSongs> {
     );
   }
 }
+
 //<<<<<Capitalize_First_Letter>>>>>//
 extension CapitalExtension on String {
   String capitalised() {
