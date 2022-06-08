@@ -23,6 +23,7 @@ class Songs extends HiveObject {
   });
 }
 
+
 class Boxes{
   static Box<List>getInstance(){
     return Hive.box<List>(boxname);

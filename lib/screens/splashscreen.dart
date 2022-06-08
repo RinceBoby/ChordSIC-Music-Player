@@ -15,6 +15,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 final AssetsAudioPlayer player = AssetsAudioPlayer.withId('0');
+
 final OnAudioRoom audioRoom = OnAudioRoom();
 
 List<SongModel> allSongs = [];

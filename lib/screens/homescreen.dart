@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   //Change Pages as per Navbar
   final _pages = [
     const Home(),
-    const Player(),
+    Player(),
     //const AlbumArtists(),
     const Playlist(),
     const Settings(),

@@ -176,14 +176,14 @@ class CustomSearch extends SearchDelegate {
                             color: Colors.black,
                           ),
                         ),
-                        trailing: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.more_vert_rounded,
-                            color: Colors.grey,
-                            size: 30,
-                          ),
-                        ),
+                        // trailing: IconButton(
+                        //   onPressed: () {},
+                        //   icon: const Icon(
+                        //     Icons.more_vert_rounded,
+                        //     color: Colors.grey,
+                        //     size: 30,
+                        //   ),
+                        // ),
                       ),
                     ),
                   ),

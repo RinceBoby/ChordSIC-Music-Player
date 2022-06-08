@@ -42,6 +42,7 @@ class _FavoriteState extends State<Favorite> {
         ),
         centerTitle: true,
         actions: [
+          //<<<<<Delete>>>>>//
           IconButton(
             onPressed: () => showDialog<String>(
               context: context,

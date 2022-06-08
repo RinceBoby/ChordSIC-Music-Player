@@ -3,6 +3,7 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 
 class OpenPlayer {
+  
   List<Audio> allSongs;
   int index;
   bool? notify;

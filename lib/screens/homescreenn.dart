@@ -26,7 +26,6 @@ class _HomeScreen1State extends State<HomeScreen1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //bottomSheet: MiniPlayer(),
       body: _pages[_currentSelectedItemIndex],
       backgroundColor: const Color.fromARGB(255, 221, 255, 252),
       bottomNavigationBar: Row(

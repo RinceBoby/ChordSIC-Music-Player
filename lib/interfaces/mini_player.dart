@@ -123,7 +123,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
                     trailing: Wrap(
                       alignment: WrapAlignment.center,
                       children: [
-                        //Previous
+                        //<<<<<Previous>>>>>//
                         IconButton(
                           onPressed: playing.index != 0
                               ? () {

@@ -42,6 +42,7 @@ class _PlaylistState extends State<Playlist> {
         ),
         centerTitle: true,
         actions: [
+          //<<<<<+_Pl>>>>>//
           Padding(
             padding: const EdgeInsets.only(right: 0),
             child: IconButton(
@@ -49,7 +50,7 @@ class _PlaylistState extends State<Playlist> {
                 showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                    backgroundColor: Color.fromARGB(255, 235, 180, 243),
+                    backgroundColor:const Color.fromARGB(255, 235, 180, 243),
                     title: Text(
                       "Create New Playlist",
                       style: GoogleFonts.nunito(

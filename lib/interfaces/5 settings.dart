@@ -1,8 +1,11 @@
 // ignore_for_file: file_names
 
+import 'package:animations/animations.dart';
+import 'package:chordsic/dialogs/policy_dialog.dart';
 import 'package:chordsic/functions/fact_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -31,30 +34,66 @@ class Settings extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, top: 10),
         child: ListView(
           children: [
-            const SettingsData(
-              settext: "  Share",
-              seticon: Icons.share_outlined,
+            //<<<<<Share>>>>>//
+            InkWell(
+              onTap: () async {
+                await Share.share('Share this text');
+              },
+              child: const SettingsData(
+                settext: "  Share",
+                seticon: Icons.share_outlined,
+              ),
             ),
             const SizedBox(height: 10),
 
-            const SettingsData(
-              settext: "  Privacy Policy",
-              seticon: Icons.privacy_tip_outlined,
+            //<<<<<Privacy_Policy>>>>>//
+            InkWell(
+              onTap: () {
+                showModal(
+                  context: context,
+                  configuration: const FadeScaleTransitionConfiguration(),
+                  builder: (context) {
+                    return PrivacyDialog(
+                      mdFileName: 'Privacy_Policy.md',
+                    );
+                  },
+                );
+              },
+              child: const SettingsData(
+                settext: "  Privacy Policy",
+                seticon: Icons.privacy_tip_outlined,
+              ),
             ),
             const SizedBox(height: 10),
 
-            const SettingsData(
-              settext: "  Terms and Conditions",
-              seticon: Icons.event_note_outlined,
+            //<<<<<T_&_C>>>>>//
+            InkWell(
+              onTap: () {
+                showModal(
+                  context: context,
+                  configuration: const FadeScaleTransitionConfiguration(),
+                  builder: (context) {
+                    return PrivacyDialog(
+                      mdFileName: 'Terms_and_Conditions.md',
+                    );
+                  },
+                );
+              },
+              child: const SettingsData(
+                settext: "  Terms and Conditions",
+                seticon: Icons.event_note_outlined,
+              ),
             ),
             const SizedBox(height: 10),
 
+            //<<<<<Feedback>>>>>//
             const SettingsData(
               settext: "  Feedback",
               seticon: Icons.feedback_outlined,
             ),
             const SizedBox(height: 10),
 
+            //<<<<<About>>>>>//
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -72,7 +111,7 @@ class Settings extends StatelessWidget {
 
             //<<<<<Version>>>>>//
             Padding(
-              padding: const EdgeInsets.only(top: 410),
+              padding: const EdgeInsets.only(top: 460),
               child: Column(
                 children: const [
                   Text(
@@ -85,7 +124,7 @@ class Settings extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '1.0.0',
+                    '1.3.2',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.normal,
@@ -109,16 +148,23 @@ class AboutData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Theme(
+    return Theme(
       data: ThemeData.from(
         colorScheme: ColorScheme.fromSwatch(
-          accentColor:const Color.fromARGB(255, 221, 255, 252),
+          primaryColorDark: const Color.fromARGB(255, 221, 255, 252),
+          cardColor: const Color.fromARGB(255, 221, 255, 252),
+          backgroundColor: const Color.fromARGB(255, 221, 255, 252),
+          accentColor: const Color.fromARGB(255, 221, 255, 252),
         ),
       ),
-      child: const LicensePage(
-        applicationName: 'ChoordSIC',
-        applicationVersion: '1.0.0',
+      child: LicensePage(
+        //applicationName: 'ChoordSIC',
+        applicationVersion: '1.3.2',
+        applicationIcon: Image.asset('assets/images/Chordsic_Logo.png',
+            width: 200, height: 200
+            //applicationIcon: ,
+            ),
+            applicationLegalese: "Developed By RINCE BOBY",
       ),
     );
   }

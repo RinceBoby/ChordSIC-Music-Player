@@ -1,14 +1,17 @@
 // ignore_for_file: file_names
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:chordsic/functions/fact_player.dart';
+import 'package:chordsic/interfaces/4%20playlistclone.dart';
 import 'package:chordsic/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:on_audio_room/on_audio_room.dart';
 
 class Player extends StatefulWidget {
+  
   const Player({Key? key}) : super(key: key);
 
   @override
@@ -32,30 +35,6 @@ class _PlayerState extends State<Player> {
         backgroundColor: const Color.fromARGB(255, 221, 255, 252),
         elevation: 0,
 
-        //<<<<<+_Playlist>>>>>//
-        // leading: Padding(
-        //   padding: const EdgeInsets.only(left: 10),
-        //   child: IconButton(
-        //     onPressed: () async {
-        //       // Navigator.pop(context, 'Yes');
-        //       // Navigator.push(
-        //       //   context,
-        //       //   MaterialPageRoute(
-        //       //     builder: (context) => PlayListClone(
-        //       //       songIndex: index,
-        //       //     ),
-        //       //   ),
-        //       // );
-        //       setState(() {});
-        //     },
-        //     icon: const Icon(
-        //       CupertinoIcons.plus_app,
-        //       color: Colors.grey,
-        //     ),
-        //     iconSize: 30,
-        //   ),
-        // ),
-
         //<<<<<Heading>>>>>//
         title: Text(
           'Now Playing',
@@ -67,202 +46,318 @@ class _PlayerState extends State<Player> {
           ),
         ),
         centerTitle: true,
-
-        // //<<<<<Favorite>>>>>//
-        // actions: [
-        //   Padding(
-        //     padding: const EdgeInsets.only(right: 10),
-        //     child: IconButton(
-        //       onPressed: () {},
-        //       icon: const Icon(FontAwesomeIcons.heart),
-        //       color: Colors.grey,
-        //       iconSize: 25,
-        //     ),
-        //   ),
-        // ],
       ),
 
       //<<<<<Body>>>>>//
+
       body: player.builderCurrent(
         builder: (context, playing) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              //
-              //<<<<<Thumbnail>>>>>//
-              Center(
-                child: Container(
-                  height: 300,
-                  width: 300,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(250)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.9),
-                        spreadRadius: 0.3,
-                        blurRadius: 5,
-                        offset: const Offset(3, 3),
+          return FutureBuilder<List<FavoritesEntity>>(
+            future: audioRoom.queryFavorites(
+              //limit: 50,
+              reverse: false,
+              sortType: null,
+            ),
+            builder: (context, allFavorite) {
+              if (allFavorite.data == null) {
+                return const SizedBox();
+              }
+              List<FavoritesEntity> favorites = allFavorite.data!;
+              List<Audio> favSongs = [];
+              for (var favrSongs in favorites) {
+                favSongs.add(
+                  Audio.file(
+                    favrSongs.lastData,
+                    metas: Metas(
+                      title: favrSongs.title,
+                      artist: favrSongs.artist,
+                      id: favrSongs.id.toString(),
+                    ),
+                  ),
+                );
+              }
+              int currentIndex = playing.index;
+              bool isFav = false;
+              int? key;
+              for (var fav in favorites) {
+                if (songDetails[currentIndex].metas.title == fav.title) {
+                  isFav = true;
+                  key = fav.key;
+                }
+              }
+
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //
+                  //<<<<<Thumbnail>>>>>//
+                  Center(
+                    child: Container(
+                      height: 300,
+                      width: 300,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(250)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.9),
+                            spreadRadius: 0.3,
+                            blurRadius: 5,
+                            offset: const Offset(3, 3),
+                          ),
+                        ],
+                      ),
+                      child: QueryArtworkWidget(
+                        artworkQuality: FilterQuality.high,
+                        quality: 100,
+                        size: 2000,
+                        artworkFit: BoxFit.contain,
+                        artworkBorder: BorderRadius.circular(250),
+                        id: int.parse(playing.audio.audio.metas.id.toString()),
+                        type: ArtworkType.AUDIO,
+                        nullArtworkWidget: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(250),
+                          ),
+                          child: Image.asset(
+                            'assets/images/Apple-Music-Artist-Lover.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  //<<<<<Title_&_Artist>>>>>//
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: 30,
+                        width: 300,
+                        child: Marquee(
+                          blankSpace: 20,
+                          velocity: 20,
+                          text: player.getCurrentAudioTitle,
+                          style: GoogleFonts.nunito(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                        width: 150,
+                        child: Marquee(
+                          blankSpace: 20,
+                          velocity: 20,
+                          text: player.getCurrentAudioArtist,
+                          style: GoogleFonts.nunito(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                  child: QueryArtworkWidget(
-                    artworkQuality: FilterQuality.high,
-                    quality: 100,
-                    size: 2000,
-                    artworkFit: BoxFit.contain,
-                    artworkBorder: BorderRadius.circular(250),
-                    id: int.parse(playing.audio.audio.metas.id.toString()),
-                    type: ArtworkType.AUDIO,
-                    nullArtworkWidget: ClipRRect(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(250),
-                      ),
-                      child: Image.asset(
-                        'assets/images/Apple-Music-Artist-Lover.png',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-              //<<<<<Title_&_Artist>>>>>//
-              const SizedBox(
-                height: 20,
-              ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: 30,
-                    width: 300,
-                    child: Marquee(
-                      blankSpace: 20,
-                      velocity: 20,
-                      text: player.getCurrentAudioTitle,
-                      style: GoogleFonts.nunito(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                    width: 150,
-                    child: Marquee(
-                      blankSpace: 20,
-                      velocity: 20,
-                      text: player.getCurrentAudioArtist,
-                      style: GoogleFonts.nunito(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 0,
-              ),
-
-              //<<<<<Progress_Bar>>>>>//
-              const Padding(
-                padding: EdgeInsets.only(left: 30, right: 30, top: 50),
-                child: SeekBar(),
-              ),
-
-              //<<<<<Player_Controls>>>>>//
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //<<<<<Shuffle>>>>>//
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(FontAwesomeIcons.shuffle),
-                    iconSize: 25,
-                    color: Colors.purpleAccent,
+                  const SizedBox(
+                    height: 0,
                   ),
 
-                  //<<<<<Previous>>>>>//
-                  IconButton(
-                    onPressed: playing.index != 0
-                        ? () {
-                            player.previous();
-                          }
-                        : () {},
-                    icon: playing.index == 0
-                        ? Icon(
-                            FontAwesomeIcons.backward,
-                            size: 40,
-                            color: Colors.purple[100],
-                          )
-                        : const Icon(
-                            FontAwesomeIcons.backward,
-                            size: 40,
-                            color: Colors.purpleAccent,
-                          ),
-                  ),
-                  const SizedBox(width: 8),
+                  //<<<<<+_Pl_&_Fav>>>>>//
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(40, 10, 40, 20),
+                    child: Row(
+                      children: [
 
-                  //<<<<<Play_Pause>>>>>//
-                  Container(
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: PlayerBuilder.isPlaying(
-                      player: player,
-                      builder: (context, isPlaying) {
-                        return IconButton(
-                          icon: Icon(
-                            isPlaying
-                                ? FontAwesomeIcons.solidCirclePause
-                                : FontAwesomeIcons.solidCirclePlay,
-                            size: 80,
-                          ),
-                          onPressed: () {
-                            player.playOrPause();
-                          },
+                        //<<<<<Playlist>>>>>//
+                        IconButton(
+                          onPressed: () async {
+                                          Navigator.pop(context, 'Yes');
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PlayListClone(
+                                                songIndex: currentIndex,
+                                              ),
+                                            ),
+                                          );
+                                          setState(() {});
+                                        },
+                          icon: const Icon(Icons.playlist_add_rounded),
                           color: Colors.purpleAccent,
-                        );
-                      },
+                          iconSize: 35,
+                        ),
+                        const Spacer(),
+
+                        //<<<<<Favorites>>>>>//
+                        IconButton(
+                          onPressed: () {
+                            if (!isFav) {
+                              ScaffoldMessenger.of(context)
+                                ..removeCurrentSnackBar()
+                                ..showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: const Color.fromARGB(
+                                        255, 211, 127, 225),
+                                    content: Text(
+                                      "Added to Favorites!",
+                                      style: GoogleFonts.nunito(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              audioRoom.addTo(
+                                RoomType.FAVORITES, //Specify Room Type
+                                allSongs[currentIndex]
+                                    .getMap
+                                    .toFavoritesEntity(),
+                                ignoreDuplicate: false, //Avoid Same Song
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                ..removeCurrentSnackBar()
+                                ..showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: const Color.fromARGB(
+                                        255, 211, 127, 225),
+                                    content: Text(
+                                      "Removed From Favorites!",
+                                      style: GoogleFonts.nunito(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              audioRoom.deleteFrom(
+                                RoomType.FAVORITES,
+                                key!,
+                              );
+                              setState(() {});
+                            }
+                            setState(() {});
+                          },
+                          icon: const Icon(FontAwesomeIcons.solidHeart),
+                          color: isFav ? Colors.purpleAccent : Colors.grey,
+                          iconSize: 30,
+                        ),
+                      ],
                     ),
                   ),
 
-                  //<<<<<Next>>>>>//
-                  IconButton(
-                    onPressed: playing.index == allSongs.length - 1
-                        ? () {}
-                        : () {
-                            player.next();
-                          },
-                    icon: playing.index == allSongs.length - 1
-                        ? Icon(
-                            FontAwesomeIcons.forward,
-                            size: 40,
-                            color: Colors.purple[100],
-                          )
-                        : const Icon(
-                            FontAwesomeIcons.forward,
-                            size: 40,
-                            color: Colors.purpleAccent,
-                          ),
-                    iconSize: 40,
-                    color: Colors.purpleAccent,
+                  //<<<<<Progress_Bar>>>>>//
+                  const Padding(
+                    padding: EdgeInsets.only(left: 30, right: 30, top: 0),
+                    child: SeekBar(),
                   ),
 
-                  //<<<<<Repeat>>>>>//
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(FontAwesomeIcons.rotate),
-                    iconSize: 25,
-                    color: Colors.purpleAccent,
+                  //<<<<<Player_Controls>>>>>//
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //<<<<<Shuffle>>>>>//
+                      IconButton(
+                        onPressed: () {
+                          
+                        },
+                        icon: const Icon(FontAwesomeIcons.shuffle),
+                        iconSize: 25,
+                        color: Colors.purpleAccent,
+                      ),
+
+                      //<<<<<Previous>>>>>//
+                      IconButton(
+                        onPressed: playing.index != 0
+                            ? () {
+                                player.previous();
+                              }
+                            : () {},
+                        icon: playing.index == 0
+                            ? Icon(
+                                FontAwesomeIcons.backward,
+                                size: 40,
+                                color: Colors.purple[100],
+                              )
+                            : const Icon(
+                                FontAwesomeIcons.backward,
+                                size: 40,
+                                color: Colors.purpleAccent,
+                              ),
+                      ),
+                      const SizedBox(width: 8),
+
+                      //<<<<<Play_Pause>>>>>//
+                      Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: PlayerBuilder.isPlaying(
+                          player: player,
+                          builder: (context, isPlaying) {
+                            return IconButton(
+                              icon: Icon(
+                                isPlaying
+                                    ? FontAwesomeIcons.solidCirclePause
+                                    : FontAwesomeIcons.solidCirclePlay,
+                                size: 80,
+                              ),
+                              onPressed: () {
+                                player.playOrPause();
+                              },
+                              color: Colors.purpleAccent,
+                            );
+                          },
+                        ),
+                      ),
+
+                      //<<<<<Next>>>>>//
+                      IconButton(
+                        onPressed: playing.index == allSongs.length - 1
+                            ? () {}
+                            : () {
+                                player.next();
+                              },
+                        icon: playing.index == allSongs.length - 1
+                            ? Icon(
+                                FontAwesomeIcons.forward,
+                                size: 40,
+                                color: Colors.purple[100],
+                              )
+                            : const Icon(
+                                FontAwesomeIcons.forward,
+                                size: 40,
+                                color: Colors.purpleAccent,
+                              ),
+                        iconSize: 40,
+                        color: Colors.purpleAccent,
+                      ),
+
+                      //<<<<<Repeat>>>>>//
+                      IconButton(
+                        onPressed: () {
+                          
+                        },
+                        icon: const Icon(FontAwesomeIcons.rotate),
+                        iconSize: 25,
+                        color: Colors.purpleAccent,
+                      ),
+                    ],
                   ),
                 ],
-              ),
-            ],
+              );
+            },
           );
         },
       ),

@@ -261,9 +261,9 @@ class _HomeState extends State<Home> {
                                   setState(() {});
                                 },
                                 child: Icon(
-                                  Icons.favorite_border_rounded,
+                                  Icons.favorite_rounded,
                                   size: 30,
-                                  color: isFav ? Colors.red : Colors.grey,
+                                  color: isFav ? Colors.purpleAccent : Colors.grey,
                                 ),
                               ),
                               const SizedBox(
